@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Loverica";
+  src: url("/Loverica2.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Glorify";
+  src: url("/glorify.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ahsing";
+  src: url("/ahsing.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --background: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-6rem) rotate(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) rotate(-15deg);
+  }
+}
+
+.glass-text {
+  background: linear-gradient(
+    135deg,
+    rgba(180, 165, 230, 0.5) 0%,
+    rgba(255, 255, 255, 0.8) 30%,
+    rgba(165, 150, 220, 0.5) 50%,
+    rgba(255, 255, 255, 0.8) 70%,
+    rgba(180, 165, 230, 0.5) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 3px 10px rgba(130, 110, 210, 0.3));
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(6rem) rotate(20deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) rotate(20deg);
+  }
+}
+
