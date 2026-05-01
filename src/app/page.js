@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollPochon from "@/components/ScrollPochon";
@@ -240,6 +240,7 @@ const CATEGORIES = [
     key: "fleurs",
     title: "Fleurs",
     label: "Fleurs CBD",
+    tagline: "Variétés sélectionnées, séchées lentement, triées à la main.",
     accent: "#2d5a44",
     image: "/pochons/pochon_image_vert.png",
     products: [
@@ -254,6 +255,7 @@ const CATEGORIES = [
     key: "huiles",
     title: "Huiles",
     label: "Huiles CBD",
+    tagline: "Concentrés purs, dosage précis, gout neutre.",
     accent: "#4a7560",
     image: "/pochons/pochon_image_rose.png",
     products: [
@@ -261,13 +263,14 @@ const CATEGORIES = [
       { name: "Huile 10%",        cbd: "10%", price: "39,00", image: "/pochons/pochon_image_vert.png", tint: "#2b3a1a" },
       { name: "Full Spectrum 20%",cbd: "20%", price: "59,00", image: "/pochons/pochon_image_rose.png", tint: "#3a1a1f" },
       { name: "Huile Sommeil",    cbd: "10%", price: "44,00", image: "/pochons/pochon_image_vert.png", tint: "#1a2a3a" },
-      { name: "Huile Detente",    cbd: "15%", price: "49,00", image: "/pochons/pochon_image_rose.png", tint: "#2a1a3a" },
+      { name: "Huile Détente",    cbd: "15%", price: "49,00", image: "/pochons/pochon_image_rose.png", tint: "#2a1a3a" },
     ],
   },
   {
-    key: "resines",
-    title: "Resines",
-    label: "Resines artisanales",
+    key: "résines",
+    title: "Résines",
+    label: "Résines artisanales",
+    tagline: "Pressées à la main, dans la pure tradition.",
     accent: "#1a3d2b",
     image: "/pochons/pochon_image_vert.png",
     products: [
@@ -284,10 +287,10 @@ const ENGAGEMENTS = [
   {
     number: "01",
     title: "Culture Bio",
-    desc: "Cultivees sans pesticides, en respectant les cycles naturels.",
-    detail: "Nos partenaires producteurs travaillent en agriculture raisonnee, certifies par des organismes independants. Aucun engrais de synthese, aucun OGM, aucun raccourci.",
+    desc: "Cultivées sans pesticides, en respectant les cycles naturels.",
+    detail: "Nos partenaires producteurs travaillent en agriculture raisonnée, certifiés par des organismes indépendants. Aucun engrais de synthèse, aucun OGM, aucun raccourci.",
     stat: "100%",
-    statLabel: "Cultures certifiees",
+    statLabel: "Cultures certifiées",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2C7 7 4 11 4 16a8 8 0 0016 0c0-5-3-9-8-14z" />
@@ -298,10 +301,10 @@ const ENGAGEMENTS = [
   {
     number: "02",
     title: "Teste en Labo",
-    desc: "Chaque lot analyse pour garantir qualite et purete.",
-    detail: "Analyses HPLC realisees par un laboratoire francais independant. Cannabinoides, pesticides, metaux lourds, micro-organismes : tout est verifie, tout est trace.",
+    desc: "Chaque lot analysé pour garantir qualité et pureté.",
+    detail: "Analyses HPLC réalisées par un laboratoire français indépendant. Cannabinoïdes, pesticides, métaux lourds, micro-organismes : tout est vérifié, tout est tracé.",
     stat: "12",
-    statLabel: "Parametres testes",
+    statLabel: "Paramètres testés",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 3h6v5l4.5 11c1 2-.5 4-2.5 4H7c-2 0-3.5-2-2.5-4L9 8V3z" />
@@ -312,8 +315,8 @@ const ENGAGEMENTS = [
   {
     number: "03",
     title: "Livraison 24h",
-    desc: "Emballage discret, expedie sous 24h partout en France.",
-    detail: "Commandes preparees le jour meme avant 14h. Colis neutres, sans mention exterieure du contenu, suivi en temps reel jusqu'a votre porte.",
+    desc: "Emballage discret, expédié sous 24h partout en France.",
+    detail: "Commandes préparées le jour même avant 14h. Colis neutres, sans mention extérieure du contenu, suivi en temps réel jusqu'à votre porte.",
     stat: "24h",
     statLabel: "Delai moyen",
     icon: (
@@ -343,7 +346,7 @@ const ENGAGEMENTS = [
 const USE_CASES = [
   {
     title: "CBD Sommeil",
-    subtitle: "Nuits reparatrices",
+    subtitle: "Nuits réparatrices",
     desc: "Apaisez l'esprit et retrouvez un sommeil profond, naturel.",
     accent: "#9CB7E8",
     glowSoft: "rgba(140, 170, 230, 0.22)",
@@ -357,7 +360,7 @@ const USE_CASES = [
   {
     title: "CBD Relaxation",
     subtitle: "Calmer le quotidien",
-    desc: "Reduisez stress et anxiete pour mieux profiter de l'instant.",
+    desc: "Réduisez stress et anxiété pour mieux profiter de l'instant.",
     accent: "#A8D5BA",
     glowSoft: "rgba(160, 210, 185, 0.22)",
     glowStrong: "rgba(160, 210, 185, 0.42)",
@@ -370,7 +373,7 @@ const USE_CASES = [
   {
     title: "CBD Recuperation",
     subtitle: "Soulager les tensions",
-    desc: "Apaisez douleurs musculaires et inflammations apres l'effort.",
+    desc: "Apaisez douleurs musculaires et inflammations après l'effort.",
     accent: "#B4DCD0",
     glowSoft: "rgba(180, 220, 210, 0.22)",
     glowStrong: "rgba(180, 220, 210, 0.42)",
@@ -386,7 +389,7 @@ const INFO_CARDS = [
   {
     label: "Mais qui sommes-nous ?",
     title: "Notre maison CBD",
-    body: "Une boutique pensee pour celles et ceux qui recherchent l'exigence : selection rigoureuse, traçabilite totale, transparence absolue sur chaque produit.",
+    body: "Une boutique pensée pour celles et ceux qui recherchent l'exigence : sélection rigoureuse, traçabilité totale, transparence absolue sur chaque produit.",
     cta: "Notre histoire",
     href: "/about",
     image: "/home_img/cbd.webp",
@@ -394,7 +397,7 @@ const INFO_CARDS = [
   {
     label: "Vous vous posez la question ?",
     title: "Le bon dosage",
-    body: "Nos experts vous guident pour doser parfaitement vos huiles, gelules, fleurs ou resines selon vos besoins, votre profil et le moment de la journee.",
+    body: "Nos experts vous guident pour doser parfaitement vos huiles, gélules, fleurs ou résines selon vos besoins, votre profil et le moment de la journée.",
     cta: "Tous nos conseils",
     href: "/blog",
     image: "/home_img/huile.png",
@@ -411,7 +414,7 @@ const NEW_ARRIVALS = [
 const STATS = [
   { value: 5,     suffix: "+",  label: "Annees d'expertise" },
   { value: 12000, suffix: "+",  label: "Clients satisfaits" },
-  { value: 50,    suffix: "+",  label: "Varietes selectionnees" },
+  { value: 50,    suffix: "+",  label: "Variétés sélectionnées" },
   { value: 100,   suffix: "%",  label: "Made in France" },
 ];
 
@@ -424,7 +427,7 @@ const GUIDE_CARDS = [
   },
   {
     cat: "Comparatif",
-    title: "CBD vs THC : la difference",
+    title: "CBD vs THC : la différence",
     excerpt: "Comprendre les distinctions entre les deux molecules les plus connues du cannabis.",
     image: "/pochons/pochon_image_rose.png",
   },
@@ -437,40 +440,40 @@ const GUIDE_CARDS = [
   {
     cat: "Guide d'achat",
     title: "Comment choisir son produit ?",
-    excerpt: "Fleurs, huiles, resines : trouver la forme adaptee a vos besoins.",
+    excerpt: "Fleurs, huiles, résines : trouver la forme adaptée à vos besoins.",
     image: "/pochons/pochon_image_rose.png",
   },
 ];
 
 const REVIEWS = [
-  { name: "Camille L.", city: "Paris",     rating: 5, text: "Qualite premium, livraison ultra rapide. Le packaging est tres soigne, on sent que tout est pense." },
-  { name: "Antoine R.", city: "Lyon",      rating: 5, text: "J'utilise leur huile 10% pour le sommeil depuis 3 mois, je vois une vraie difference. Service client au top." },
-  { name: "Sophie M.",  city: "Bordeaux",  rating: 5, text: "Les fleurs sont magnifiques, parfums tres marques. C'est vraiment une autre categorie." },
-  { name: "Julien D.",  city: "Marseille", rating: 4, text: "Tres bon rapport qualite-prix, conseils pertinents par chat. Je recommande sans hesiter." },
-  { name: "Marie P.",   city: "Toulouse",  rating: 5, text: "Premiere commande, deja conquise. Tout est conforme aux descriptions, et bien plus encore." },
+  { name: "Camille L.", city: "Paris",     rating: 5, text: "Qualité premium, livraison ultra rapide. Le packaging est très soigné, on sent que tout est pensé." },
+  { name: "Antoine R.", city: "Lyon",      rating: 5, text: "J'utilise leur huile 10% pour le sommeil depuis 3 mois, je vois une vraie différence. Service client au top." },
+  { name: "Sophie M.",  city: "Bordeaux",  rating: 5, text: "Les fleurs sont magnifiques, parfums très marques. C'est vraiment une autre catégorie." },
+  { name: "Julien D.",  city: "Marseille", rating: 4, text: "Très bon rapport qualité-prix, conseils pertinents par chat. Je recommande sans hésiter." },
+  { name: "Marie P.",   city: "Toulouse",  rating: 5, text: "Première commande, déjà conquise. Tout est conforme aux descriptions, et bien plus encore." },
   { name: "Thomas B.",  city: "Nantes",    rating: 5, text: "Le service client repond vite et bien. Les analyses lab sont disponibles, ca change tout." },
 ];
 
 const FAQS = [
   {
-    q: "Le CBD est-il legal en France ?",
-    a: "Oui. Tous nos produits respectent la reglementation francaise et europeenne en vigueur, avec un taux de THC strictement inferieur a 0,3%. Vous pouvez consommer et transporter nos produits en toute legalite sur le territoire francais.",
+    q: "Le CBD est-il légal en France ?",
+    a: "Oui. Tous nos produits respectent la réglementation française et européenne en vigueur, avec un taux de THC strictement inférieur à 0,3%. Vous pouvez consommer et transporter nos produits en toute légalité sur le territoire français.",
   },
   {
     q: "Le CBD est-il psychoactif ?",
-    a: "Non. Le CBD (cannabidiol) n'est pas psychoactif et ne provoque aucun effet planant. Il agit sur le systeme endocannabinoide pour favoriser la detente, sans alterer la conscience ni les capacites motrices.",
+    a: "Non. Le CBD (cannabidiol) n'est pas psychoactif et ne provoque aucun effet planant. Il agit sur le système endocannabinoïde pour favoriser la détente, sans altérer la conscience ni les capacités motrices.",
   },
   {
     q: "Combien de temps avant d'en ressentir les effets ?",
-    a: "Cela depend du mode de consommation : quelques minutes pour une inhalation, 15 a 45 minutes pour les huiles sublinguales, jusqu'a 1h30 pour les comestibles. Les effets durent generalement de 2 a 6 heures.",
+    a: "Cela dépend du mode de consommation : quelques minutes pour une inhalation, 15 à 45 minutes pour les huiles sublinguales, jusqu'à 1h30 pour les comestibles. Les effets durent généralement de 2 à 6 heures.",
   },
   {
     q: "Le CBD est-il detectable aux tests salivaires ?",
-    a: "Le CBD pur n'est pas recherche par les tests, mais des traces residuelles de THC (legales) peuvent rester detectables quelques heures. Nous recommandons la prudence pour les conducteurs et les professions sensibles.",
+    a: "Le CBD pur n'est pas recherché par les tests, mais des traces résiduelles de THC (légales) peuvent rester détectables quelques heures. Nous recommandons la prudence pour les conducteurs et les professions sensibles.",
   },
   {
     q: "Quels sont les effets secondaires possibles ?",
-    a: "Le CBD est tres bien tolere. Dans de rares cas, on peut observer une legere somnolence, une bouche seche ou de petits troubles digestifs. Demandez l'avis d'un medecin si vous suivez un traitement medicamenteux.",
+    a: "Le CBD est très bien toléré. Dans de rares cas, on peut observer une légère somnolence, une bouche sèche ou de petits troubles digestifs. Demandez l'avis d'un médecin si vous suivez un traitement médicamenteux.",
   },
   {
     q: "Le CBD cree-t-il une dependance ?",
@@ -483,12 +486,12 @@ const BLOG_POSTS = [
     cat: "Lifestyle",
     title: "Integrer le CBD dans sa routine du soir",
     date: "12 avril 2026",
-    excerpt: "Trois rituels simples pour preparer une nuit reparatrice.",
+    excerpt: "Trois rituels simples pour préparer une nuit réparatrice.",
     image: "/pochons/pochon_image_vert.png",
   },
   {
     cat: "Culture",
-    title: "Indoor, outdoor, greenhouse : les differences",
+    title: "Indoor, outdoor, greenhouse : les différences",
     date: "28 mars 2026",
     excerpt: "Comprendre l'impact du mode de culture sur le profil aromatique des fleurs.",
     image: "/pochons/pochon_image_rose.png",
@@ -497,7 +500,7 @@ const BLOG_POSTS = [
     cat: "Sante",
     title: "CBD et sport : ce que dit la recherche",
     date: "15 mars 2026",
-    excerpt: "Recuperation musculaire, sommeil, focus : un point sur les etudes recentes.",
+    excerpt: "Récupération musculaire, sommeil, focus : un point sur les études récentes.",
     image: "/pochons/pochon_image_vert.png",
   },
 ];
@@ -559,9 +562,9 @@ function Engagements() {
   return (
     <section className="relative z-10 py-24 md:py-28 px-6 md:px-14 lg:px-24">
       {/* Header */}
-      <ScrollReveal className="mb-16 md:mb-24 max-w-3xl">
+      <ScrollReveal className="mb-4 md:mb-5 max-w-3xl">
         <p
-          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-5 px-3 py-1 rounded-full"
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
           style={{
             color: "rgba(255,255,255,0.7)",
             background: "rgba(255,255,255,0.06)",
@@ -573,11 +576,14 @@ function Engagements() {
           Pourquoi nous
         </p>
         <h2
-          className="text-5xl md:text-7xl lg:text-8xl leading-[0.92] tracking-tight text-white/95"
+          className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
           style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
         >
           Nos <span className="text-white/40">engagements.</span>
         </h2>
+        <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
+          Ce sur quoi vous pouvez compter, à chaque commande.
+        </p>
       </ScrollReveal>
 
       {/* Sticky split */}
@@ -917,24 +923,268 @@ const INK_DIM = "rgba(10, 37, 32, 0.38)";
 const HAIRLINE = "rgba(10, 37, 32, 0.08)";
 const SURFACE = "#f4f1ea";
 
+const CATEGORY_TONES = {
+  fleurs: "#2d7a4a",
+  huiles: "#5fa8d3",
+  résines: "#7a4a2a",
+};
+
+const ROTATING_WORDS = [
+  { text: "Fleurs", color: CATEGORY_TONES.fleurs },
+  { text: "Huiles", color: CATEGORY_TONES.huiles },
+  { text: "Résines", color: CATEGORY_TONES.résines },
+];
+
+const ROTATING_PLASTIC_WORDS = ["plastique", "dechets"];
+
+const ROTATING_HELP_WORDS = ["repond", "conseille"];
+
+function RotatingCategoryWord() {
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef(null);
+  const isFirstRef = useRef(true);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const el = containerRef.current;
+      if (!el) return;
+      const letters = el.querySelectorAll(".letter");
+      gsap.to(letters, {
+        opacity: 0,
+        yPercent: -110,
+        filter: "blur(10px)",
+        rotateX: 80,
+        duration: 0.5,
+        ease: "power3.in",
+        stagger: { each: 0.035, from: "start" },
+        onComplete: () => setIndex((i) => (i + 1) % ROTATING_WORDS.length),
+      });
+    }, 2600);
+    return () => clearInterval(id);
+  }, []);
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      return;
+    }
+    const letters = el.querySelectorAll(".letter");
+    gsap.fromTo(
+      letters,
+      { opacity: 0, yPercent: 110, filter: "blur(10px)", rotateX: -80 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        filter: "blur(0px)",
+        rotateX: 0,
+        duration: 0.75,
+        ease: "expo.out",
+        stagger: { each: 0.045, from: "start" },
+      }
+    );
+  }, [index]);
+
+  const word = ROTATING_WORDS[index];
+
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        verticalAlign: "baseline",
+        color: word.color,
+        perspective: "600px",
+        lineHeight: 1,
+        fontSize: "0.95em",
+      }}
+    >
+      <span
+        ref={containerRef}
+        key={word.text}
+        style={{ display: "inline-block", whiteSpace: "pre" }}
+      >
+        {word.text.split("").map((char, i) => (
+          <span
+            key={i}
+            className="letter"
+            style={{
+              display: "inline-block",
+              transformOrigin: "center bottom",
+              willChange: "transform, opacity, filter",
+            }}
+          >
+            {char}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
+function RotatingPlasticWord() {
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef(null);
+  const isFirstRef = useRef(true);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const el = containerRef.current;
+      if (!el) return;
+      const letters = el.querySelectorAll(".letter");
+      gsap.to(letters, {
+        opacity: 0,
+        yPercent: -110,
+        filter: "blur(10px)",
+        rotateX: 80,
+        duration: 0.5,
+        ease: "power3.in",
+        stagger: { each: 0.035, from: "start" },
+        onComplete: () => setIndex((i) => (i + 1) % ROTATING_PLASTIC_WORDS.length),
+      });
+    }, 2600);
+    return () => clearInterval(id);
+  }, []);
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      return;
+    }
+    const letters = el.querySelectorAll(".letter");
+    gsap.fromTo(
+      letters,
+      { opacity: 0, yPercent: 110, filter: "blur(10px)", rotateX: -80 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        filter: "blur(0px)",
+        rotateX: 0,
+        duration: 0.75,
+        ease: "expo.out",
+        stagger: { each: 0.045, from: "start" },
+      }
+    );
+  }, [index]);
+
+  const word = ROTATING_PLASTIC_WORDS[index];
+
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        verticalAlign: "baseline",
+        color: "rgba(10, 37, 32, 0.38)",
+        perspective: "600px",
+        lineHeight: 1,
+      }}
+    >
+      <span
+        ref={containerRef}
+        key={word}
+        style={{ display: "inline-block", whiteSpace: "pre" }}
+      >
+        {word.split("").map((char, i) => (
+          <span
+            key={i}
+            className="letter"
+            style={{
+              display: "inline-block",
+              transformOrigin: "center bottom",
+              willChange: "transform, opacity, filter",
+            }}
+          >
+            {char}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
+function RotatingHelpWord() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = ROTATING_HELP_WORDS[wordIndex];
+    const typingSpeed = isDeleting ? 55 : 105;
+    const holdAtFull = 1400;
+    const holdAtEmpty = 200;
+
+    let timeout;
+    if (!isDeleting && text === currentWord) {
+      timeout = setTimeout(() => setIsDeleting(true), holdAtFull);
+    } else if (isDeleting && text === "") {
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setWordIndex((i) => (i + 1) % ROTATING_HELP_WORDS.length);
+      }, holdAtEmpty);
+    } else {
+      timeout = setTimeout(() => {
+        setText((prev) =>
+          isDeleting ? prev.slice(0, -1) : currentWord.slice(0, prev.length + 1)
+        );
+      }, typingSpeed);
+    }
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex]);
+
+  return (
+    <span style={{ display: "inline-block", whiteSpace: "pre" }}>
+      {text}
+      <span className="typing-cursor" aria-hidden />
+    </span>
+  );
+}
+
 function BestSellers() {
   const [activeKey, setActiveKey] = useState(CATEGORIES[0].key);
-  const [phase, setPhase] = useState("in"); // "in" | "out"
+  const [offset, setOffset] = useState(0);
+  const gridRef = useRef(null);
+  const tweenRef = useRef(null);
   const active = CATEGORIES.find((c) => c.key === activeKey);
+  const total = active.products.length;
+  const rotated = active.products.map((_, i) => active.products[(i + offset) % total]);
+
+  const isFirstRender = useRef(true);
+  useLayoutEffect(() => {
+    if (!gridRef.current) return;
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (tweenRef.current) tweenRef.current.kill();
+    const cards = gridRef.current.children;
+    gsap.set(cards, { opacity: 0, y: 50, scale: 0.94, filter: "blur(10px)" });
+    tweenRef.current = gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.77,
+      ease: "expo.out",
+      stagger: 0.088,
+      overwrite: true,
+    });
+  }, [offset, activeKey]);
 
   const handleSelect = (key) => {
     if (key === activeKey) return;
-    setPhase("out");
-    setTimeout(() => {
-      setActiveKey(key);
-      setPhase("in");
-    }, 220);
+    setActiveKey(key);
+    setOffset(0);
   };
+
+  const next = () => setOffset((o) => (o + 1) % total);
+  const prev = () => setOffset((o) => (o - 1 + total) % total);
 
   return (
     <>
-      {/* Modern segmented control + meta row */}
-      <ScrollReveal className="mb-8 md:mb-10 flex items-center justify-between gap-6 flex-wrap">
+      {/* Modern segmented control */}
+      <ScrollReveal className="mb-4 md:mb-5 flex items-center justify-center gap-6 flex-wrap">
         <div
           role="tablist"
           className="inline-flex items-center gap-1 p-1 rounded-full"
@@ -951,7 +1201,7 @@ function BestSellers() {
                 className="relative inline-flex items-center gap-2 px-4 md:px-5 py-1.5 rounded-full text-xs md:text-sm font-semibold transition-all duration-300"
                 style={{
                   background: isActive ? "#ffffff" : "transparent",
-                  color: isActive ? INK : INK_MUTED,
+                  color: isActive ? CATEGORY_TONES[cat.key] : INK_MUTED,
                   boxShadow: isActive
                     ? "0 1px 2px rgba(10,37,32,0.06), 0 4px 16px rgba(10,37,32,0.06)"
                     : "none",
@@ -960,9 +1210,10 @@ function BestSellers() {
               >
                 <span
                   aria-hidden
-                  className="block w-1.5 h-1.5 rounded-full transition-all duration-300"
+                  className="block w-1.5 h-1.5 rounded-full transition-all duration-300 dot-pulse"
                   style={{
-                    background: cat.accent,
+                    background: CATEGORY_TONES[cat.key],
+                    color: CATEGORY_TONES[cat.key],
                     opacity: isActive ? 1 : 0.5,
                   }}
                 />
@@ -971,68 +1222,87 @@ function BestSellers() {
             );
           })}
         </div>
-
-        <a
-          href="/products"
-          className="group inline-flex items-center gap-2 text-xs md:text-sm font-semibold transition-colors duration-300"
-          style={{ color: INK_MUTED, fontFamily: "var(--font-heading)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = INK)}
-          onMouseLeave={(e) => (e.currentTarget.style.color = INK_MUTED)}
-        >
-          Voir toute la boutique
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
       </ScrollReveal>
 
-      {/* Products grid */}
-      <div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4"
-        style={{
-          opacity: phase === "in" ? 1 : 0,
-          transform: phase === "in" ? "translateY(0)" : "translateY(8px)",
-          transition: "opacity 0.35s ease, transform 0.35s ease",
-        }}
+      <p
+        key={active.key}
+        className="mb-4 md:mb-5 text-sm md:text-base leading-relaxed text-center"
+        style={{ color: INK_MUTED, fontFamily: "var(--font-heading)" }}
       >
-        {active.products.map((p, i) => (
+        {active.tagline}
+      </p>
+
+      {/* Products grid */}
+      <div className="relative">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Produits precedents"
+          className="group/chev hidden md:flex absolute left-0 -translate-x-full -translate-y-1/2 z-20 items-center justify-center w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
+          style={{
+            top: "calc((100% - 75px) / 2)",
+            background: "transparent",
+            border: "none",
+            color: "rgba(10,37,32,0.45)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.45)")}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+            <path d="M14.5 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Produits suivants"
+          className="group/chev hidden md:flex absolute right-0 translate-x-full -translate-y-1/2 z-20 items-center justify-center w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
+          style={{
+            top: "calc((100% - 75px) / 2)",
+            background: "transparent",
+            border: "none",
+            color: "rgba(10,37,32,0.45)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.45)")}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+            <path d="M9.5 6l6 6-6 6" />
+          </svg>
+        </button>
+
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4"
+        >
+        {rotated.map((p, i) => (
           <a
-            key={`${active.key}-${p.name}`}
+            key={`${active.key}-${i}`}
             href="/products"
-            className="group block relative overflow-hidden rounded-[28px] transition-all duration-500"
+            className="group block relative overflow-hidden rounded-[28px] text-center"
             style={{
               background: "#ffffff",
               border: `1px solid ${HAIRLINE}`,
-              transitionDelay: `${i * 40}ms`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow = `0 28px 60px -24px ${active.accent}66, 0 8px 24px -12px rgba(10,37,32,0.18)`;
-              e.currentTarget.style.borderColor = `${active.accent}66`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-              e.currentTarget.style.borderColor = HAIRLINE;
             }}
           >
             <StaticFlowingBackground
               color={`${active.accent}47`}
               seed={42 + i * 17 + active.key.charCodeAt(0)}
-              lineWidth={1.2}
+              lineWidth={1.4}
               cellSize={6}
               numContours={5}
-              waveScale={5.5}
+              waveScale={4}
             />
 
             {/* Image area */}
-            <div className="relative aspect-[4/5] overflow-hidden flex items-center justify-center">
+            <div className="relative aspect-[1/1] overflow-hidden flex items-center justify-center">
               {/* Halo behind image */}
               <span
                 aria-hidden
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[78%] h-[78%] rounded-full transition-all duration-700 group-hover:scale-110"
                 style={{
-                  background: `radial-gradient(circle, ${active.accent}28 0%, transparent 60%)`,
+                  background: `radial-gradient(circle, ${active.accent}2E 0%, transparent 60%)`,
                 }}
               />
 
@@ -1074,7 +1344,7 @@ function BestSellers() {
 
             {/* Apple-style banner */}
             <div
-              className="relative z-[2] px-5 py-5 md:py-6 text-center"
+              className="relative z-[2] px-4 py-3 md:py-4 text-center"
               style={{
                 background: "#f5f5f7",
                 borderTop: "1px solid rgba(10, 37, 32, 0.06)",
@@ -1083,9 +1353,9 @@ function BestSellers() {
             >
               <span
                 className="block text-[10px] font-semibold uppercase tracking-[0.22em] mb-2"
-                style={{ color: active.accent, fontFamily: "var(--font-heading)" }}
+                style={{ color: CATEGORY_TONES[active.key], fontFamily: "var(--font-heading)" }}
               >
-                N°0{i + 1} · {active.title}
+                {active.title.toUpperCase()}
               </span>
               <h3
                 className="text-base md:text-lg font-semibold tracking-tight truncate"
@@ -1097,11 +1367,28 @@ function BestSellers() {
                 className="text-[13px] md:text-sm mt-1.5 tabular-nums"
                 style={{ color: INK_MUTED, fontFamily: "var(--font-heading)" }}
               >
-                A partir de <span style={{ color: INK, fontWeight: 500 }}>{p.price} €</span>
+                À partir de <span style={{ color: INK, fontWeight: 500 }}>{p.price} €</span>
               </p>
             </div>
           </a>
         ))}
+        </div>
+      </div>
+
+      <div className="mt-6 md:mt-7 flex justify-center">
+        <a
+          href="/products"
+          className="inline-flex items-center justify-center px-6 py-4 leading-none rounded-full text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 hover:scale-[1.03]"
+          style={{
+            background: "#ffffff",
+            color: "#0a0a0a",
+            border: "1px solid rgba(10,37,32,0.06)",
+            boxShadow: "0 8px 20px -10px rgba(10,37,32,0.18), 0 2px 6px -2px rgba(10,37,32,0.08)",
+            fontFamily: "var(--font-heading)",
+          }}
+        >
+          Voir nos gammes
+        </a>
       </div>
     </>
   );
@@ -1125,9 +1412,9 @@ function TrustBento() {
   return (
     <section className="relative z-10 py-20 md:py-28 px-6 md:px-14 lg:px-24">
       {/* Header */}
-      <ScrollReveal className="mb-10 md:mb-14 max-w-3xl">
+      <ScrollReveal className="mb-4 md:mb-5 max-w-3xl">
         <p
-          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-5 px-3 py-1 rounded-full"
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
           style={{
             color: "rgba(255,255,255,0.7)",
             background: "rgba(255,255,255,0.06)",
@@ -1139,40 +1426,47 @@ function TrustBento() {
           Au quotidien
         </p>
         <h2
-          className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+          className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95 whitespace-nowrap"
           style={display}
         >
-          Tout ce qu&apos;il vous faut,<br />
-          <span className="text-white/40">au meme endroit.</span>
+          Juste <span className="text-white/40">l&apos;essentiel</span>
         </h2>
+        <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
+          Ce qu&apos;il faut savoir avant de commander, condensé en un coup d&apos;oeil.
+        </p>
       </ScrollReveal>
 
       {/* Bento grid */}
       <ScrollReveal>
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 md:gap-5 md:auto-rows-[210px]"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 md:gap-5 md:auto-rows-[170px]"
         >
           {/* CARD 1 — Livraison hero (cols 1-3, rows 1-2) */}
           <div
             className="relative overflow-hidden rounded-2xl p-7 md:p-9 sm:col-span-2 md:col-span-3 md:row-span-2 group transition-transform duration-700"
             style={card}
           >
-            {/* Dotted route line */}
+            {/* Dotted route line + animated traveling dot */}
             <svg
               aria-hidden
-              className="absolute inset-0 w-full h-full opacity-[0.18] pointer-events-none"
+              className="absolute inset-0 w-full h-full pointer-events-none"
               preserveAspectRatio="none"
               viewBox="0 0 600 400"
             >
               <path
-                d="M-30 340 Q 140 300 260 220 T 640 60"
+                id="route-path"
+                d="M 68 348 C 580 360, 580 90, 560 74"
                 fill="none"
                 stroke={INK}
-                strokeWidth="1.4"
-                strokeDasharray="2 9"
+                strokeWidth="1.2"
+                strokeDasharray="2 8"
+                opacity="0.22"
               />
-              <circle cx="-30" cy="340" r="3" fill={INK} />
-              <circle cx="640" cy="60" r="3" fill={INK} />
+              <circle r="3.5" fill={INK} opacity="0.85">
+                <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#route-path" />
+                </animateMotion>
+              </circle>
             </svg>
             {/* soft radial glow on hover */}
             <div
@@ -1182,46 +1476,44 @@ function TrustBento() {
             />
             {/* truck icon top-right */}
             <div
-              className="absolute top-7 right-7 flex items-center justify-center w-12 h-12 rounded-full"
+              className="absolute top-7 right-7 flex items-center justify-center w-9 h-9 rounded-full"
               style={iconCircle}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className="w-5 h-5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className="w-4 h-4">
                 <path d="M3 7h12v10H3zM15 10h4l2 3v4h-6" />
                 <circle cx="6" cy="18.5" r="1.5" />
                 <circle cx="18" cy="18.5" r="1.5" />
               </svg>
             </div>
 
-            <p className="relative text-[10px] uppercase tracking-[0.28em]" style={{ ...titleFont, color: INK_DIM }}>
-              Livraison
-            </p>
-            <h3
-              className="relative mt-3 text-3xl md:text-5xl leading-[1] tracking-tight"
-              style={{ ...display, color: INK }}
-            >
-              Expedie en<br />24h, partout.
-            </h3>
-            <p className="relative mt-4 text-sm md:text-[15px] leading-relaxed max-w-md" style={{ color: INK_MUTED }}>
-              Commande passee avant 14h, preparee le jour meme. Colis 100% neutre, sans mention exterieure. Suivi en temps reel jusqu&apos;a votre porte.
-            </p>
+            <div className="relative h-full flex flex-col">
+              <p className="text-[10px] uppercase tracking-[0.28em]" style={{ ...titleFont, color: INK_DIM }}>
+                Livraison
+              </p>
+              <div className="flex-1 flex flex-col justify-center pb-16 md:pb-20">
+                <h3
+                  className="text-3xl md:text-[3.25rem] leading-[1.05] tracking-tight"
+                  style={{ ...display, color: INK }}
+                >
+                  Expedie en 24h.
+                </h3>
+                <p className="mt-4 text-sm md:text-[15px] leading-relaxed" style={{ color: INK_MUTED }}>
+                  <span className="whitespace-nowrap">Conditionnée sous vide pour préserver la fraîcheur, expédiée sous 24h.</span><br />Livraison sécurisée et suivie en temps réel jusqu&apos;à votre porte.
+                </p>
+              </div>
+            </div>
 
             {/* bottom row: micro-stats */}
             <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span
-                  className="flex items-center justify-center w-9 h-9 rounded-full"
-                  style={iconCircle}
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-                    <rect x="4" y="6" width="16" height="14" rx="1.5" />
-                    <path d="M8 6V4M16 6V4M4 11h16" />
-                  </svg>
-                </span>
-                <div className="text-[11px] leading-tight" style={{ color: INK_MUTED }}>
-                  <p style={{ ...titleFont, color: INK }}>Avant 14h</p>
-                  <p>Expedition le jour J</p>
-                </div>
-              </div>
+              <span
+                className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
+                style={iconCircle}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                  <rect x="4" y="6" width="16" height="14" rx="1.5" />
+                  <path d="M8 6V4M16 6V4M4 11h16" />
+                </svg>
+              </span>
               <div className="text-right">
                 <p
                   className="text-4xl md:text-5xl leading-none"
@@ -1242,20 +1534,20 @@ function TrustBento() {
             style={card}
           >
             <p className="text-[10px] uppercase tracking-[0.28em]" style={{ ...titleFont, color: INK_DIM }}>
-              Cadre legal
+              Cadre légal
             </p>
             <h3
-              className="mt-2 text-5xl md:text-6xl leading-none tracking-tight"
+              className="mt-2 text-3xl md:text-4xl leading-none tracking-tight"
               style={{ ...display, color: INK }}
             >
               0,3<span style={{ color: INK_DIM }}>%</span>
             </h3>
-            <p className="absolute bottom-6 left-7 right-7 text-[13px] leading-relaxed" style={{ color: INK_MUTED }}>
-              Le seuil legal de THC, garanti sur chaque lot. Conforme a la reglementation francaise et europeenne.
+            <p className="mt-3 text-[13px] leading-relaxed" style={{ color: INK_MUTED }}>
+              Le seuil légal de THC, garanti sur chaque lot.<br />Conforme à la réglementation française et européenne.
             </p>
           </div>
 
-          {/* CARD 3 — Paiement securise (col 6, rows 1-2) */}
+          {/* CARD 3 — Paiement sécurisé (col 6, rows 1-2) */}
           <div
             className="relative overflow-hidden rounded-2xl p-6 sm:col-span-2 md:col-span-1 md:row-span-2 flex flex-col"
             style={card}
@@ -1286,28 +1578,11 @@ function TrustBento() {
               className="relative mt-2 text-2xl md:text-3xl leading-[1] tracking-tight"
               style={{ ...display, color: INK }}
             >
-              100% securise
+              securise
             </h3>
             <p className="relative mt-3 text-[12px] leading-relaxed" style={{ color: INK_MUTED }}>
-              Paiement chiffre via Stripe. Aucune donnee bancaire stockee sur nos serveurs.
+              Paiement chiffré via Stripe. Aucune donnée bancaire stockée sur nos serveurs.
             </p>
-
-            <div className="relative mt-auto pt-5 flex flex-wrap gap-1.5">
-              {["CB", "Apple Pay", "Stripe", "Virement"].map((m) => (
-                <span
-                  key={m}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px]"
-                  style={{
-                    background: "rgba(10,37,32,0.05)",
-                    color: INK,
-                    border: "1px solid rgba(10,37,32,0.08)",
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
-                  {m}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* CARD 4 — Analyses HPLC (cols 4-5, row 2) */}
@@ -1315,21 +1590,6 @@ function TrustBento() {
             className="relative overflow-hidden rounded-2xl p-7 md:col-span-2 md:row-span-1"
             style={card}
           >
-            {/* Decorative chromatogram wave */}
-            <svg
-              aria-hidden
-              className="absolute right-0 bottom-0 w-2/3 h-2/3 opacity-[0.18] pointer-events-none"
-              viewBox="0 0 200 100"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0 80 L30 80 L40 50 L48 78 L60 78 L70 25 L80 78 L100 78 L110 60 L120 78 L140 78 L150 40 L160 78 L200 78"
-                fill="none"
-                stroke={INK}
-                strokeWidth="1.2"
-              />
-              <line x1="0" y1="80" x2="200" y2="80" stroke={INK} strokeWidth="0.5" opacity="0.5" />
-            </svg>
             <div className="relative flex items-start justify-between gap-4">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.28em]" style={{ ...titleFont, color: INK_DIM }}>
@@ -1339,8 +1599,11 @@ function TrustBento() {
                   className="mt-2 text-2xl md:text-3xl leading-tight tracking-tight max-w-[16ch]"
                   style={{ ...display, color: INK }}
                 >
-                  Chaque lot, certifie en labo independant.
+                  Chaque lot est certifie.
                 </h3>
+                <p className="mt-3 text-[12px] leading-relaxed" style={{ color: INK_MUTED }}>
+                  Cannabinoïdes, pesticides, métaux lourds.<br />Certificats accessibles sur chaque fiche produit.
+                </p>
               </div>
               <span
                 className="shrink-0 flex items-center justify-center w-11 h-11 rounded-full"
@@ -1352,9 +1615,6 @@ function TrustBento() {
                 </svg>
               </span>
             </div>
-            <p className="absolute bottom-6 left-7 right-7 text-[12px] leading-relaxed" style={{ color: INK_MUTED }}>
-              Cannabinoides, pesticides, metaux lourds. Certificats accessibles sur chaque fiche produit.
-            </p>
           </div>
 
           {/* CARD 5 — Made in France + map (cols 1-2, row 3) */}
@@ -1362,33 +1622,17 @@ function TrustBento() {
             className="relative overflow-hidden rounded-2xl p-7 md:col-span-2 md:row-span-1"
             style={card}
           >
-            {/* Dotted France-ish silhouette */}
-            <svg
-              aria-hidden
-              className="absolute right-3 bottom-3 w-32 h-32 md:w-36 md:h-36 opacity-25 pointer-events-none"
-              viewBox="0 0 100 100"
-            >
-              {Array.from({ length: 80 }).map((_, i) => {
-                const x = (i % 10) * 10 + 5;
-                const y = Math.floor(i / 10) * 10 + 5;
-                const inside =
-                  (x > 20 && x < 80 && y > 25 && y < 78) &&
-                  !(x < 30 && y < 35) && !(x > 75 && y > 70);
-                if (!inside) return null;
-                return <circle key={i} cx={x} cy={y} r="1.1" fill={INK} />;
-              })}
-            </svg>
             <p className="text-[10px] uppercase tracking-[0.28em]" style={{ ...titleFont, color: INK_DIM }}>
               Filiere
             </p>
             <h3 className="mt-2 text-3xl md:text-4xl leading-none tracking-tight" style={{ ...display, color: INK }}>
               100<span style={{ color: INK_DIM }}>%</span>
             </h3>
-            <p className="mt-1 text-sm font-semibold" style={{ ...titleFont, color: "rgba(10,37,32,0.78)" }}>
-              Made in France
+            <p className="mt-1 text-sm font-semibold inline-flex items-center gap-1.5" style={{ ...titleFont, color: "rgba(10,37,32,0.78)" }}>
+              Made in <span className="text-base leading-none">🇫🇷</span>
             </p>
-            <p className="mt-2 text-[12px] leading-relaxed max-w-[22ch]" style={{ color: INK_MUTED }}>
-              Cultive en Europe, traite et expedie depuis la France. Aucun intermediaire opaque.
+            <p className="mt-2 text-[12px] leading-relaxed" style={{ color: INK_MUTED }}>
+              Cultivé en Europe,<br />Traité et expédié depuis la France.
             </p>
           </div>
 
@@ -1407,10 +1651,15 @@ function TrustBento() {
               Conseil humain
             </p>
             <h3 className="mt-2 text-xl md:text-2xl leading-tight tracking-tight" style={{ ...display, color: INK }}>
-              Une question ? On repond.
+              On vous <RotatingHelpWord />
             </h3>
-            <p className="mt-2 text-[12px] leading-relaxed max-w-[28ch]" style={{ color: INK_MUTED }}>
-              Equipe joignable 6j/7 par email et chat. Reponses claires, jamais scriptees.
+            <p className="mt-2 text-[12px] leading-tight whitespace-nowrap inline-flex items-center gap-2" style={{ color: INK_MUTED }}>
+              <span
+                aria-hidden
+                className="block w-1 h-1 rounded-full dot-pulse shrink-0"
+                style={{ background: "#7aaa8e", color: "#7aaa8e" }}
+              />
+              <span>Équipe joignable 7jrs/7 par email et chat.</span>
             </p>
             <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-3">
               <p className="text-[10px] uppercase tracking-[0.25em]" style={{ ...titleFont, color: INK_DIM }}>
@@ -1466,13 +1715,13 @@ function TrustBento() {
               className="mt-2 text-3xl md:text-4xl leading-none tracking-tight"
               style={{ ...display, color: INK }}
             >
-              0<span style={{ color: INK_DIM }}> plastique</span>
+              0 <RotatingPlasticWord />
             </h3>
             <p className="mt-1 text-sm font-semibold" style={{ ...titleFont, color: "rgba(10,37,32,0.78)" }}>
               Emballages eco-concus
             </p>
             <p className="mt-2 text-[12px] leading-relaxed max-w-[26ch]" style={{ color: INK_MUTED }}>
-              Cartons FSC recyclables, encres vegetales, calage en fibre de chanvre.
+              Cartons FSC recyclables, encres végétales.
             </p>
           </div>
         </div>
@@ -1533,7 +1782,7 @@ export default function Home() {
 
         <FadeIn delay={1200} className="mt-8 max-w-md text-center">
           <p className="text-white/40 text-base md:text-lg leading-relaxed" style={{ fontFamily: "var(--font-heading)" }}>
-            Une selection rigoureuse de fleurs, huiles et resines CBD pour votre bien-etre au quotidien.
+            Une sélection rigoureuse de fleurs, huiles et résines CBD pour votre bien-être au quotidien.
           </p>
         </FadeIn>
 
@@ -1545,25 +1794,21 @@ export default function Home() {
             <span
               className="absolute inset-0 rounded-full transition-all duration-500 group-hover:scale-105"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                background: "#ffffff",
+                border: "1px solid rgba(10,37,32,0.06)",
+                boxShadow: "0 8px 20px -10px rgba(10,37,32,0.25), 0 2px 6px -2px rgba(10,37,32,0.12)",
               }}
             />
-            <span className="relative flex items-center gap-3 px-8 py-4 text-sm font-semibold text-white/80 uppercase tracking-widest group-hover:text-white transition-colors">
-              Decouvrir
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 transition-transform group-hover:translate-x-1">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+            <span className="relative flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-widest transition-colors" style={{ color: "#0a0a0a" }}>
+              Découvrir
             </span>
           </a>
         </FadeIn>
 
         <FadeIn delay={2000} className="absolute bottom-10 left-1/2 -translate-x-1/2">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-white/25">Scroll</span>
-            <div className="w-px h-8 bg-white/15 animate-pulse" />
+            <span className="text-[10px] uppercase tracking-[0.25em] shimmer-text">Scroll</span>
+            <div className="w-px h-8 shimmer-line" />
           </div>
         </FadeIn>
       </section>
@@ -1571,11 +1816,11 @@ export default function Home() {
       {/* ══════════════════════════════════════════════
           SECTION 2 — CATEGORIES & TOP VENTES
       ══════════════════════════════════════════════ */}
-      <section id="section-categories" className="relative z-10 pt-24 md:pt-28 pb-20 md:pb-24 px-6 md:px-14 lg:px-24">
+      <section id="section-catégories" className="relative z-10 pt-16 md:pt-20 pb-14 md:pb-16 px-6 md:px-14 lg:px-24">
         <div className="relative w-full">
           <ScaleReveal>
             <div
-              className="relative overflow-hidden rounded-[28px] md:rounded-[36px] p-6 md:p-10 lg:p-14"
+              className="relative overflow-hidden rounded-[28px] md:rounded-[36px] p-4 md:p-10 lg:p-12"
               style={{
                 background: "#fdfcf8",
                 boxShadow:
@@ -1583,38 +1828,29 @@ export default function Home() {
                 border: "1px solid rgba(255,255,255,0.09)",
               }}
             >
-              <div className="mb-8 md:mb-10 flex items-end justify-between gap-8 flex-wrap">
-                <div>
-                  <p
-                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
-                    style={{
-                      color: INK_MUTED,
-                      background: "rgba(10,37,32,0.05)",
-                      border: `1px solid ${HAIRLINE}`,
-                      fontFamily: "var(--font-heading)",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: INK }} />
-                    Top ventes
-                  </p>
-                  <h2
-                    className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight"
-                    style={{
-                      fontFamily: "Glorify, var(--font-heading)",
-                      fontWeight: 400,
-                      color: INK,
-                    }}
-                  >
-                    Le meilleur, par categorie
-                  </h2>
-                </div>
+              <div className="mb-4 md:mb-5 flex flex-col items-center text-center">
                 <p
-                  className="max-w-xs text-sm leading-relaxed"
-                  style={{ color: INK_MUTED }}
+                  className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.24em] mb-4 md:mb-5 px-2.5 py-0.5 rounded-full"
+                  style={{
+                    color: INK_MUTED,
+                    background: "rgba(10,37,32,0.05)",
+                    border: `1px solid ${HAIRLINE}`,
+                    fontFamily: "var(--font-heading)",
+                  }}
                 >
-                  Choisissez une famille de produits — nous vous montrons les references
-                  les plus appreciees.
+                  <span className="w-1 h-1 rounded-full" style={{ background: INK }} />
+                  Best sellers
                 </p>
+                <h2
+                  className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight"
+                  style={{
+                    fontFamily: "Glorify, var(--font-heading)",
+                    fontWeight: 400,
+                    color: INK,
+                  }}
+                >
+                  Nos meilleures <RotatingCategoryWord />
+                </h2>
               </div>
 
               <BestSellers />
@@ -1632,9 +1868,9 @@ export default function Home() {
           SECTION 4 — BESOINS & INFOS
       ══════════════════════════════════════════════ */}
       <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
-        <ScrollReveal className="mb-10 md:mb-14 max-w-3xl">
+        <ScrollReveal className="mb-4 md:mb-5 max-w-3xl">
           <p
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
             style={{
               color: "rgba(255,255,255,0.7)",
               background: "rgba(255,255,255,0.06)",
@@ -1649,8 +1885,11 @@ export default function Home() {
             className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
             style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
           >
-            Trouvez votre CBD
+            Le CBD qui vous ressemble
           </h2>
+          <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
+            Pas la même attente le matin et le soir. Trois usages, trois réponses.
+          </p>
         </ScrollReveal>
 
         {/* Use cases — 3 cards */}
@@ -1748,7 +1987,7 @@ export default function Home() {
                         fontFamily: "var(--font-heading)",
                       }}
                     >
-                      Decouvrir
+                      Découvrir
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -1832,10 +2071,10 @@ export default function Home() {
           SECTION 5 — NOUVEAUTES
       ══════════════════════════════════════════════ */}
       <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
-        <ScrollReveal className="mb-12 md:mb-16 flex items-end justify-between gap-8 flex-wrap">
+        <ScrollReveal className="mb-4 md:mb-5 flex items-end justify-between gap-8 flex-wrap">
           <div className="max-w-xl">
             <p
-              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
               style={{
                 color: "#c9b9ec",
                 background: "rgba(130, 95, 195, 0.14)",
@@ -1844,16 +2083,16 @@ export default function Home() {
               }}
             >
               <span className="block w-1.5 h-1.5 rounded-full" style={{ background: "#c9b9ec" }} />
-              Nouveautes · Semaine 17
+              Nouveautés · Semaine 17
             </p>
             <h2
-              className="text-5xl md:text-7xl leading-[0.92] tracking-tight text-white/95"
+              className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
               style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
             >
               Fraichement<br />arrives
             </h2>
-            <p className="mt-5 text-sm md:text-base text-white/45 leading-relaxed max-w-md">
-              Cette semaine, trois selections fraichement recoltees, en quantite limitee.
+            <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/45 leading-relaxed max-w-md">
+              Cette semaine, trois sélections fraîchement récoltées, en quantité limitee.
             </p>
           </div>
           <a
@@ -1974,7 +2213,7 @@ export default function Home() {
                     className="text-[13px] md:text-sm mt-1.5 tabular-nums"
                     style={{ color: INK_MUTED, fontFamily: "var(--font-heading)" }}
                   >
-                    A partir de <span style={{ color: INK, fontWeight: 500 }}>{p.price} €</span>
+                    À partir de <span style={{ color: INK, fontWeight: 500 }}>{p.price} €</span>
                   </p>
                 </div>
               </a>
@@ -2049,7 +2288,7 @@ export default function Home() {
           <div className="lg:col-span-7">
             <ScrollReveal>
               <p
-                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
                 style={{
                   color: "rgba(255,255,255,0.7)",
                   background: "rgba(255,255,255,0.06)",
@@ -2061,7 +2300,7 @@ export default function Home() {
                 Notre histoire
               </p>
               <h2
-                className="text-5xl md:text-7xl leading-[0.95] tracking-tight text-white/90 mb-8"
+                className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/90 mb-4 md:mb-5"
                 style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
               >
                 Une passion, une exigence
@@ -2071,12 +2310,12 @@ export default function Home() {
             <ScrollReveal delay={150}>
               <div className="space-y-5 max-w-xl text-white/55 leading-relaxed">
                 <p>
-                  Ne d'une conviction simple : le CBD merite la meme exigence qu'un grand vin.
-                  Nous selectionnons chaque variete avec rigueur, en privilegiant les producteurs
+                  Né d'une conviction simple : le CBD mérite la même exigence qu'un grand vin.
+                  Nous sélectionnons chaque variété avec rigueur, en privilégiant les producteurs
                   europeens engages dans une demarche responsable.
                 </p>
                 <p>
-                  Chaque lot est analyse, chaque produit est teste. Nous croyons a la transparence
+                  Chaque lot est analysé, chaque produit est testé. Nous croyons à la transparence
                   totale : vous savez exactement ce que vous consommez.
                 </p>
               </div>
@@ -2148,7 +2387,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-xs text-sm leading-relaxed" style={{ color: INK_MUTED }}>
-                Des reponses claires aux questions les plus frequentes sur le CBD.
+                Des réponses claires aux questions les plus fréquentes sur le CBD.
               </p>
             </div>
 
@@ -2218,10 +2457,10 @@ export default function Home() {
       ══════════════════════════════════════════════ */}
       <section className="relative z-10 py-20 md:py-24 overflow-hidden">
         <div className="px-6 md:px-14 lg:px-24">
-          <ScrollReveal className="mb-12 md:mb-16 flex items-end justify-between gap-8 flex-wrap">
+          <ScrollReveal className="mb-4 md:mb-5 flex items-end justify-between gap-8 flex-wrap">
             <div>
               <p
-                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
                 style={{
                   color: "rgba(255,255,255,0.7)",
                   background: "rgba(255,255,255,0.06)",
@@ -2233,7 +2472,7 @@ export default function Home() {
                 Ils nous font confiance
               </p>
               <h2
-                className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white/90"
+                className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 Avis clients
@@ -2319,7 +2558,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16">
           <ScrollReveal className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
             <p
-              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
               style={{
                 color: "rgba(255,255,255,0.7)",
                 background: "rgba(255,255,255,0.06)",
@@ -2328,16 +2567,16 @@ export default function Home() {
               }}
             >
               <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
-              Questions frequentes
+              Questions fréquentes
             </p>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90 mb-4 md:mb-5"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              On vous<br />repond
+              On vous<br />répond
             </h2>
             <p className="text-white/40 text-sm md:text-base leading-relaxed max-w-sm">
-              Une question qui n'apparait pas ici ? Notre equipe vous repond sous 24h.
+              Une question qui n'apparait pas ici ? Notre équipe vous répond sous 24h.
             </p>
             <a
               href="/contact"
@@ -2364,7 +2603,7 @@ export default function Home() {
         <ScrollReveal className="mb-12 md:mb-16 flex items-end justify-between gap-8 flex-wrap">
           <div>
             <p
-              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
               style={{
                 color: "rgba(255,255,255,0.7)",
                 background: "rgba(255,255,255,0.06)",
@@ -2376,7 +2615,7 @@ export default function Home() {
               Le journal
             </p>
             <h2
-              className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white/90"
+              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Derniers<br />articles
@@ -2491,7 +2730,7 @@ export default function Home() {
             <div className="relative max-w-2xl mx-auto text-center">
               <ScrollReveal>
                 <p
-                  className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
+                  className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
                   style={{
                     color: "rgba(4,45,36,0.7)",
                     background: "rgba(4,45,36,0.06)",
@@ -2503,13 +2742,13 @@ export default function Home() {
                   Newsletter
                 </p>
                 <h2
-                  className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight mb-6"
+                  className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight mb-4 md:mb-5"
                   style={{ fontFamily: "var(--font-heading)", color: "#042D24" }}
                 >
-                  Restez informe
+                  Restez informé
                 </h2>
-                <p className="text-base md:text-lg leading-relaxed mb-10 max-w-md mx-auto" style={{color: "rgba(4,45,36,0.6)"}}>
-                  Nouveautes, conseils et offres exclusives — directement dans votre boite mail. Pas de spam, promis.
+                <p className="text-base md:text-lg leading-relaxed mb-4 md:mb-5 max-w-md mx-auto" style={{color: "rgba(4,45,36,0.6)"}}>
+                  Nouveautés, conseils et offres exclusives — directement dans votre boîte mail. Pas de spam, promis.
                 </p>
               </ScrollReveal>
 
@@ -2553,7 +2792,7 @@ export default function Home() {
                   </button>
                 </form>
                 <p className="text-[11px] mt-5" style={{color: "rgba(4,45,36,0.4)"}}>
-                  En vous inscrivant, vous acceptez notre politique de confidentialite.
+                  En vous inscrivant, vous acceptez notre politique de confidentialité.
                 </p>
               </ScrollReveal>
             </div>
@@ -2603,9 +2842,9 @@ export default function Home() {
                   Information importante
                 </p>
                 <p>
-                  Nos produits contiennent un taux de THC strictement inferieur a 0,3%, conformement a la reglementation francaise.
-                  Ils ne sont pas des medicaments et ne peuvent se substituer a un avis medical. Deconseille aux femmes enceintes ou allaitantes,
-                  aux mineurs et aux personnes sous traitement medicamenteux. Vente interdite aux moins de 18 ans.
+                  Nos produits contiennent un taux de THC strictement inférieur à 0,3%, conformément à la réglementation française.
+                  Ils ne sont pas des médicaments et ne peuvent se substituer à un avis médical. Déconseillé aux femmes enceintes ou allaitantes,
+                  aux mineurs et aux personnes sous traitement médicamenteux. Vente interdite aux moins de 18 ans.
                 </p>
               </div>
             </div>

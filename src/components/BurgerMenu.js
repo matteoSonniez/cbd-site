@@ -58,22 +58,22 @@ function MenuButton({ open, onClick, className = "", ...props }) {
     <button
       onClick={onClick}
       aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-      className={`flex items-center justify-center w-11 h-11 rounded-full border border-gray-300 bg-gray-200 shadow-[0_6px_18px_rgba(0,0,0,0.16)] cursor-pointer ${className}`}
+      className={`flex items-center justify-center w-10 h-10 rounded-full border border-gray-300/60 bg-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.12)] cursor-pointer ${className}`}
       {...props}
     >
       <div className="flex flex-col items-center justify-center gap-[3px]">
         <span
-          className={`block h-[2px] w-4 rounded-full bg-[#5B4A8A] transition-all duration-300 ${
+          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
             open ? "translate-y-[5px] rotate-45" : ""
           }`}
         />
         <span
-          className={`block h-[2px] w-4 rounded-full bg-[#5B4A8A] transition-all duration-300 ${
+          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
             open ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block h-[2px] w-4 rounded-full bg-[#5B4A8A] transition-all duration-300 ${
+          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
             open ? "-translate-y-[5px] -rotate-45" : ""
           }`}
         />

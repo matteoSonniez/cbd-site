@@ -104,3 +104,120 @@ body {
   }
 }
 
+@keyframes shimmer-sweep {
+  0% {
+    background-position: 250% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.25) 35%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.25) 65%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+
+@keyframes soft-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0);
+  }
+}
+
+.dot-pulse {
+  animation: soft-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 0.85em;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: -0.05em;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes word-roll {
+  0%, 25% {
+    transform: translate3d(0, 0, 0);
+  }
+  33.33%, 58.33% {
+    transform: translate3d(0, -1.1em, 0);
+  }
+  66.66%, 91.66% {
+    transform: translate3d(0, -2.2em, 0);
+  }
+  100% {
+    transform: translate3d(0, -3.3em, 0);
+  }
+}
+
+.word-roller {
+  position: relative;
+  display: inline-block;
+  height: 1.1em;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.1;
+}
+
+.word-roller-track {
+  display: block;
+  animation: word-roll 6s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  will-change: transform;
+}
+
+.word-roller-track > span {
+  display: block;
+  height: 1.1em;
+  line-height: 1.1;
+}
+
+@keyframes shimmer-sweep-vertical {
+  0% {
+    background-position: 0 250%;
+  }
+  100% {
+    background-position: 0 -150%;
+  }
+}
+
+.shimmer-line {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.15) 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.15) 65%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  background-size: 100% 200%;
+  animation: shimmer-sweep-vertical 3.5s linear infinite;
+}
+
