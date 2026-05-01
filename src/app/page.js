@@ -2470,18 +2470,20 @@ export default function Home() {
           <div
             className="relative overflow-hidden rounded-[28px] md:rounded-[36px] p-10 md:p-16 lg:p-20"
             style={{
-              background: "rgba(4,45,36,0.55)",
-              border: "1px solid rgba(255,255,255,0.09)",
+              background: "#ffffff",
+              border: "1px solid rgba(0,0,0,0.09)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
             }}
           >
+            <StaticFlowingBackground color="rgba(4, 45, 36, 0.12)" seed={117} lineWidth={0.7} cellSize={6} numContours={5} waveScale={4} />
+
             {/* Decorative orb */}
             <div
               aria-hidden
-              className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-20"
+              className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10"
               style={{
-                background: "radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(4,45,36,0.3) 0%, transparent 70%)",
                 filter: "blur(40px)",
               }}
             />
@@ -2491,22 +2493,22 @@ export default function Home() {
                 <p
                   className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
                   style={{
-                    color: "rgba(255,255,255,0.7)",
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    color: "rgba(4,45,36,0.7)",
+                    background: "rgba(4,45,36,0.06)",
+                    border: "1px solid rgba(4,45,36,0.12)",
                     fontFamily: "var(--font-heading)",
                   }}
                 >
-                  <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
+                  <span className="block w-1.5 h-1.5 rounded-full" style={{background: "rgba(4,45,36,0.6)"}} />
                   Newsletter
                 </p>
                 <h2
-                  className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90 mb-6"
-                  style={{ fontFamily: "var(--font-heading)" }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight mb-6"
+                  style={{ fontFamily: "var(--font-heading)", color: "#042D24" }}
                 >
                   Restez informe
                 </h2>
-                <p className="text-white/45 text-base md:text-lg leading-relaxed mb-10 max-w-md mx-auto">
+                <p className="text-base md:text-lg leading-relaxed mb-10 max-w-md mx-auto" style={{color: "rgba(4,45,36,0.6)"}}>
                   Nouveautes, conseils et offres exclusives — directement dans votre boite mail. Pas de spam, promis.
                 </p>
               </ScrollReveal>
@@ -2525,21 +2527,22 @@ export default function Home() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre@email.com"
-                    className="flex-1 px-6 py-4 rounded-full text-sm text-white placeholder:text-white/30 focus:outline-none transition-colors"
+                    className="flex-1 px-6 py-4 rounded-full text-sm placeholder:text-gray-400 focus:outline-none transition-colors"
                     style={{
-                      background: "rgba(255,255,255,0.07)",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      background: "rgba(4,45,36,0.07)",
+                      border: "1px solid rgba(4,45,36,0.1)",
                       fontFamily: "var(--font-heading)",
+                      color: "#042D24",
                     }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(4,45,36,0.3)")}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(4,45,36,0.1)")}
                   />
                   <button
                     type="submit"
                     className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-500 hover:scale-105 whitespace-nowrap"
                     style={{
-                      background: "rgba(255,255,255,0.95)",
-                      color: "#042D24",
+                      background: "#042D24",
+                      color: "#ffffff",
                       fontFamily: "var(--font-heading)",
                     }}
                   >
@@ -2549,7 +2552,7 @@ export default function Home() {
                     </svg>
                   </button>
                 </form>
-                <p className="text-[11px] text-white/25 mt-5">
+                <p className="text-[11px] mt-5" style={{color: "rgba(4,45,36,0.4)"}}>
                   En vous inscrivant, vous acceptez notre politique de confidentialite.
                 </p>
               </ScrollReveal>
