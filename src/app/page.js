@@ -224,10 +224,12 @@ function FAQItem({ q, a, isOpen, onToggle, index }) {
       >
         <div
           ref={contentRef}
-          className="pb-7 pl-0 md:pl-20 pr-0 md:pr-20 text-sm md:text-base leading-relaxed"
+          className="pb-7 pl-0 md:pl-20 pr-0 md:pr-20 text-sm md:text-base leading-relaxed space-y-2"
           style={{ color: "rgba(255,255,255,0.45)" }}
         >
-          {a}
+          {a.split("\n").map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
         </div>
       </div>
     </div>
@@ -423,25 +425,25 @@ const GUIDE_CARDS = [
     cat: "Bases",
     title: "Qu'est-ce que le CBD ?",
     excerpt: "Tout savoir sur ce cannabinoide non-psychoactif et ses proprietes.",
-    image: "/pochons/pochon_image_vert.png",
+    image: "https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?w=900&q=80&auto=format&fit=crop",
   },
   {
     cat: "Comparatif",
     title: "CBD vs THC : la différence",
     excerpt: "Comprendre les distinctions entre les deux molecules les plus connues du cannabis.",
-    image: "/pochons/pochon_image_rose.png",
+    image: "https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=900&q=80&auto=format&fit=crop",
   },
   {
     cat: "Bien-etre",
     title: "Les bienfaits au quotidien",
     excerpt: "Stress, sommeil, douleurs : ce que la recherche actuelle nous apprend.",
-    image: "/pochons/pochon_image_vert.png",
+    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=900&q=80&auto=format&fit=crop",
   },
   {
     cat: "Guide d'achat",
     title: "Comment choisir son produit ?",
     excerpt: "Fleurs, huiles, résines : trouver la forme adaptée à vos besoins.",
-    image: "/pochons/pochon_image_rose.png",
+    image: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=900&q=80&auto=format&fit=crop",
   },
 ];
 
@@ -456,28 +458,40 @@ const REVIEWS = [
 
 const FAQS = [
   {
-    q: "Le CBD est-il légal en France ?",
-    a: "Oui. Tous nos produits respectent la réglementation française et européenne en vigueur, avec un taux de THC strictement inférieur à 0,3%. Vous pouvez consommer et transporter nos produits en toute légalité sur le territoire français.",
+    q: "Que signifie CBD ?",
+    a: "CBD est l'abréviation de cannabidiol, l'un des cannabinoïdes naturellement présents dans la plante de cannabis.\nContrairement au THC, il n'est pas psychoactif : il ne provoque aucun effet planant.\nIl interagit notamment avec le système endocannabinoïde et sérotoninergique pour favoriser détente, sommeil et bien-être.",
   },
   {
-    q: "Le CBD est-il psychoactif ?",
-    a: "Non. Le CBD (cannabidiol) n'est pas psychoactif et ne provoque aucun effet planant. Il agit sur le système endocannabinoïde pour favoriser la détente, sans altérer la conscience ni les capacités motrices.",
+    q: "Quelle est la différence entre CBD et THC ?",
+    a: "Tous deux issus de la même plante, le CBD et le THC ont pourtant des effets très différents.\nLe THC est psychoactif, classé stupéfiant et illégal en France.\nLe CBD n'est pas classé comme stupéfiant : il agit sur le système sérotoninergique pour son effet apaisant, sans altérer la conscience ni les capacités motrices.",
+  },
+  {
+    q: "Le CBD est-il légal en France ?",
+    a: "Oui. La législation française autorise la vente et la consommation des produits à base de CBD dès lors que leur taux de THC reste inférieur à 0,3 %.\nIls doivent être issus de chanvre industriel cultivé dans l'Union européenne.\nTous nos produits respectent strictement ces critères, accompagnés de leurs certificats d'analyse.",
+  },
+  {
+    q: "Est-il bon de prendre du CBD tous les jours ?",
+    a: "Une prise quotidienne s'intègre très bien dans une routine de bien-être.\nLa qualité du produit, le dosage et votre profil personnel restent essentiels.\nSelon l'OMS, le CBD ne présente pas de potentiel d'abus ou de dépendance.\nSi vous suivez un traitement médicamenteux, demandez l'avis de votre médecin ou pharmacien avant toute consommation régulière.",
   },
   {
     q: "Combien de temps avant d'en ressentir les effets ?",
-    a: "Cela dépend du mode de consommation : quelques minutes pour une inhalation, 15 à 45 minutes pour les huiles sublinguales, jusqu'à 1h30 pour les comestibles. Les effets durent généralement de 2 à 6 heures.",
+    a: "Cela dépend du mode de consommation : quelques minutes pour une inhalation, 15 à 45 minutes pour les huiles sublinguales, jusqu'à 1h30 pour les comestibles.\nLes effets durent généralement de 2 à 6 heures.",
   },
   {
-    q: "Le CBD est-il detectable aux tests salivaires ?",
-    a: "Le CBD pur n'est pas recherché par les tests, mais des traces résiduelles de THC (légales) peuvent rester détectables quelques heures. Nous recommandons la prudence pour les conducteurs et les professions sensibles.",
+    q: "Y a-t-il des effets secondaires ou des interactions médicamenteuses ?",
+    a: "Le CBD est très bien toléré.\nDans de rares cas : légère somnolence, bouche sèche, petits troubles digestifs.\nLe CBD peut interagir avec certains médicaments (antiépileptiques, immunosuppresseurs comme l'évérolimus) et est déconseillé en cas d'insuffisance hépatique.\nDemandez l'avis d'un professionnel de santé si vous suivez un traitement.",
   },
   {
-    q: "Quels sont les effets secondaires possibles ?",
-    a: "Le CBD est très bien toléré. Dans de rares cas, on peut observer une légère somnolence, une bouche sèche ou de petits troubles digestifs. Demandez l'avis d'un médecin si vous suivez un traitement médicamenteux.",
+    q: "Le CBD est-il détectable aux contrôles routiers ?",
+    a: "Le CBD pur n'est pas recherché par les tests.\nDes traces résiduelles de THC (légales) peuvent toutefois rester détectables quelques heures.\nLa Cour de Cassation (arrêt du 21 juin 2023) a confirmé que la simple présence de THC dans l'organisme suffit à constituer l'infraction de conduite sous stupéfiants, peu importe la dose.\nSoyez prudent si vous conduisez ou exercez une profession sensible.",
   },
   {
-    q: "Le CBD cree-t-il une dependance ?",
-    a: "Non. Selon l'OMS, le CBD ne presente pas de potentiel d'abus ou de dependance. C'est une molecule sure pour une consommation reguliere dans le cadre d'une utilisation responsable.",
+    q: "Comment sont expédiées vos commandes ?",
+    a: "Toutes nos commandes sont préparées et expédiées depuis la France.\nColis 100 % neutre, anonymisé et sécurisé pour une discrétion totale.\nLivraison suivie par services postaux, points relais ou GLS.\nOption Chronopost disponible, encore plus rapide et offerte dès 80 € d'achat.\nPaiement 100 % sécurisé avec 3D Secure.",
+  },
+  {
+    q: "Quelle est votre politique de retour ?",
+    a: "Vous disposez de 14 jours pour retourner un produit qui ne vous conviendrait pas.\nNos produits sont vendus et expédiés en direct, sans dropshipping ni intermédiaires.\nNotre service client vous répond sous 72 h maximum avec une réponse personnalisée et adaptée.",
   },
 ];
 
@@ -487,21 +501,21 @@ const BLOG_POSTS = [
     title: "Integrer le CBD dans sa routine du soir",
     date: "12 avril 2026",
     excerpt: "Trois rituels simples pour préparer une nuit réparatrice.",
-    image: "/pochons/pochon_image_vert.png",
+    image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=900&q=80&auto=format&fit=crop",
   },
   {
     cat: "Culture",
     title: "Indoor, outdoor, greenhouse : les différences",
     date: "28 mars 2026",
     excerpt: "Comprendre l'impact du mode de culture sur le profil aromatique des fleurs.",
-    image: "/pochons/pochon_image_rose.png",
+    image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80&auto=format&fit=crop",
   },
   {
     cat: "Sante",
     title: "CBD et sport : ce que dit la recherche",
     date: "15 mars 2026",
     excerpt: "Récupération musculaire, sommeil, focus : un point sur les études récentes.",
-    image: "/pochons/pochon_image_vert.png",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80&auto=format&fit=crop",
   },
 ];
 
@@ -560,7 +574,7 @@ function Engagements() {
   const current = ENGAGEMENTS[active];
 
   return (
-    <section className="relative z-10 py-24 md:py-28 px-6 md:px-14 lg:px-24">
+    <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
       {/* Header */}
       <ScrollReveal className="mb-4 md:mb-5 max-w-3xl">
         <p
@@ -939,6 +953,48 @@ const ROTATING_PLASTIC_WORDS = ["plastique", "dechets"];
 
 const ROTATING_HELP_WORDS = ["repond", "conseille"];
 
+const STORY_STEPS = [
+  {
+    title: "L'origine",
+    text: "Une conviction : le CBD mérite la même exigence qu'un grand vin. Le terroir, le savoir-faire et le temps avant tout.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3l2.4 5.4 5.6.6-4.2 3.9 1.2 5.6L12 16l-5 2.5 1.2-5.6L4 9l5.6-.6L12 3z" />
+      </svg>
+    ),
+  },
+  {
+    title: "La sélection",
+    text: "Chaque producteur visité, chaque variété goûtée. Nous refusons tout ce qui ne tient pas la route.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="6" />
+        <path d="M16 16l5 5" />
+      </svg>
+    ),
+  },
+  {
+    title: "L'expertise",
+    text: "Une équipe formée à la plante, à ses variétés, à ses usages. Pour vous orienter, pas pour vous vendre.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 4v15a1 1 0 0 0 1.45.89L12 17l6.55 2.89A1 1 0 0 0 20 19V4a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1z" />
+        <path d="M8 8h8M8 12h5" />
+      </svg>
+    ),
+  },
+  {
+    title: "L'engagement",
+    text: "Transparence totale, traçabilité complète, satisfaction garantie. Notre parole avant tout.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L3 6v6c0 5 3.5 9.5 9 10 5.5-.5 9-5 9-10V6l-9-4z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    ),
+  },
+];
+
 function RotatingCategoryWord() {
   const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
@@ -1138,6 +1194,641 @@ function RotatingHelpWord() {
       {text}
       <span className="typing-cursor" aria-hidden />
     </span>
+  );
+}
+
+const CBD_TABS = [
+  {
+    id: "definition",
+    label: "Le CBD, c'est quoi ?",
+    title: "Une plante. Une histoire millenaire.",
+    intro: "Le chanvre, utilise depuis des millenaires par les civilisations anciennes, donne aujourd'hui naissance a l'un des composes les plus etudies au monde : le cannabidiol, ou CBD.",
+    blocks: [
+      {
+        kicker: "Origines",
+        title: "Une plante ancienne",
+        text: "Civilisations chinoises et egyptiennes l'utilisaient deja pour ses fibres robustes, ses huiles et ses vertus apaisantes.",
+      },
+      {
+        kicker: "1940 → 1963",
+        title: "Decouverte scientifique",
+        text: "Isole pour la premiere fois par Roger Adams en 1940, sa structure chimique est elucidee en 1963 par Mechoulam et Shvo.",
+      },
+      {
+        kicker: "Aujourd'hui",
+        title: "Bien-etre moderne",
+        text: "Sans effet psychotrope, contrairement au THC. Le CBD interagit avec votre systeme endocannabinoide pour favoriser detente et equilibre.",
+      },
+    ],
+    forms: [
+      { label: "Fleurs", desc: "A infuser ou vaporiser" },
+      { label: "Huiles", desc: "Sublinguales, dosage precis" },
+      { label: "Resines", desc: "Concentre artisanal" },
+      { label: "Cosmetiques", desc: "Cremes, baumes, lotions" },
+      { label: "Aliments", desc: "Tisanes, gelules, gelifies" },
+    ],
+  },
+  {
+    id: "bienfaits",
+    label: "Les bienfaits",
+    title: "Ce que la recherche nous dit.",
+    intro: "Le CBD n'est pas un medicament et ne remplace aucun traitement. Les etudes en cours suggerent toutefois plusieurs benefices potentiels sur le bien-etre.",
+    benefits: [
+      {
+        title: "Apaiser la douleur",
+        text: "Action sur les recepteurs de la douleur dans le systeme nerveux.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></svg>
+        ),
+      },
+      {
+        title: "Stress et anxiete",
+        text: "Interaction avec les recepteurs de la serotonine pour un effet apaisant.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0" /><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" /><path d="M3 6c2-2 4-2 6 0s4 2 6 0 4-2 6 0" /></svg>
+        ),
+      },
+      {
+        title: "Sommeil",
+        text: "Amelioration de la qualite du sommeil et de l'endormissement.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+        ),
+      },
+      {
+        title: "Peau",
+        text: "Anti-inflammatoire pour eczema, psoriasis et acne.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l2 5 5 1-3.5 3.5L17 18l-5-3-5 3 1.5-5.5L5 9l5-1z" /></svg>
+        ),
+      },
+      {
+        title: "Neurologique",
+        text: "Etudes en cours : epilepsie, Parkinson, Alzheimer.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3-3 3 3 0 0 0-3-3z" /><path d="M9 9v6M15 9v6M9 12h6" /></svg>
+        ),
+      },
+      {
+        title: "Digestion",
+        text: "Regulation de l'appetit et du tractus gastro-intestinal.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3c-3 5-6 6-6 11a6 6 0 0 0 12 0c0-5-3-6-6-11z" /></svg>
+        ),
+      },
+      {
+        title: "Cardiovasculaire",
+        text: "Action potentielle sur la pression arterielle et le stress oxydatif.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+        ),
+      },
+      {
+        title: "Recuperation sportive",
+        text: "Anti-inflammatoire pour courbatures et performance.",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 6l4 4M14 14l4 4M3 9l6 6M9 3l12 12M15 21l6-6M5 19l3-3" /></svg>
+        ),
+      },
+    ],
+  },
+  {
+    id: "pourquoi",
+    label: "Pourquoi LaFleurCBD ?",
+    title: "Notre engagement, votre confiance.",
+    intro: "Plus de 100 000 clients nous font confiance pour leur quotidien. Voici pourquoi.",
+    pillars: [
+      {
+        num: "01",
+        title: "Qualite superieure",
+        text: "Selection rigoureuse, tolerance zero sur la qualite et la securite des produits.",
+      },
+      {
+        num: "02",
+        title: "Variete et innovation",
+        text: "Huiles, fleurs, resines, cosmetiques : une gamme complete pensee pour chaque besoin.",
+      },
+      {
+        num: "03",
+        title: "Livraison 48h",
+        text: "Discretion totale, expedition partout en France, Belgique, Luxembourg, Allemagne, Italie, Espagne.",
+      },
+      {
+        num: "04",
+        title: "Expertise et conseil",
+        text: "Une equipe disponible pour vous accompagner dans le choix et l'usage de chaque produit.",
+      },
+    ],
+  },
+];
+
+function BenefitsConstellation({ benefits }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const detailRef = useRef(null);
+  const isFirstRef = useRef(true);
+
+  useLayoutEffect(() => {
+    if (!detailRef.current) return;
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      return;
+    }
+    gsap.fromTo(
+      detailRef.current,
+      { opacity: 0, y: 12, filter: "blur(8px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }
+    );
+  }, [activeIdx]);
+
+  const positions = benefits.map((_, i) => {
+    const angle = (i / benefits.length) * Math.PI * 2 - Math.PI / 2;
+    return { x: Math.cos(angle), y: Math.sin(angle) };
+  });
+
+  const active = benefits[activeIdx];
+
+  return (
+    <div
+      className="relative mx-auto"
+      style={{ maxWidth: "528px", width: "100%", aspectRatio: "1 / 1" }}
+    >
+      {/* Branches (dotted lines from center to each icon) */}
+      <svg
+        aria-hidden
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 600 600"
+      >
+        {positions.map((pos, i) => {
+          const radius = 210;
+          const inner = 70;
+          const x1 = 300 + pos.x * inner;
+          const y1 = 300 + pos.y * inner;
+          const x2 = 300 + pos.x * radius;
+          const y2 = 300 + pos.y * radius;
+          const isActive = i === activeIdx;
+          return (
+            <line
+              key={i}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke={isActive ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.1)"}
+              strokeWidth="1"
+              strokeDasharray="2 5"
+              style={{ transition: "stroke 0.5s ease" }}
+            />
+          );
+        })}
+      </svg>
+
+      {/* Center detail panel */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-6"
+        style={{ width: "min(60%, 280px)" }}
+      >
+        <div ref={detailRef} key={activeIdx}>
+          <h3
+            className="text-2xl md:text-3xl text-white/95 mb-3"
+            style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+          >
+            {active.title}
+          </h3>
+          <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+            {active.text}
+          </p>
+        </div>
+      </div>
+
+      {/* Icon nodes */}
+      {benefits.map((b, i) => {
+        const pos = positions[i];
+        const isActive = i === activeIdx;
+        const radius = 40; // percent of container half-size — icon center; line outer (210 viewBox) matches icon inner edge
+        return (
+          <button
+            key={b.title}
+            type="button"
+            onClick={() => setActiveIdx(i)}
+            aria-label={b.title}
+            className="absolute flex flex-col items-center transition-all duration-500"
+            style={{
+              left: `${50 + pos.x * radius}%`,
+              top: `${50 + pos.y * radius}%`,
+              transform: `translate(-50%, -50%) scale(${isActive ? 1.1 : 1})`,
+              zIndex: isActive ? 5 : 2,
+            }}
+          >
+            <span
+              className="flex items-center justify-center rounded-full transition-all duration-500"
+              style={{
+                width: isActive ? "64px" : "52px",
+                height: isActive ? "64px" : "52px",
+                background: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.05)",
+                color: isActive ? "#042D24" : "rgba(255,255,255,0.7)",
+                border: isActive
+                  ? "1px solid rgba(255,255,255,0.95)"
+                  : "1px solid rgba(255,255,255,0.12)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                boxShadow: isActive
+                  ? "0 18px 40px -12px rgba(255,255,255,0.25), 0 0 0 6px rgba(255,255,255,0.06)"
+                  : "0 8px 24px -10px rgba(0,0,0,0.5)",
+              }}
+            >
+              <span className="block w-5 h-5">{b.icon}</span>
+            </span>
+            <span
+              className="block mt-2 text-[10px] uppercase tracking-[0.2em] transition-all duration-500"
+              style={{
+                color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)",
+                fontFamily: "var(--font-heading)",
+                whiteSpace: "nowrap",
+                textAlign: "center",
+              }}
+            >
+              {b.title.split(" ")[0]}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function CBDExplained() {
+  const [activeTab, setActiveTab] = useState(0);
+  const contentRef = useRef(null);
+  const isFirstRef = useRef(true);
+
+  useLayoutEffect(() => {
+    if (!contentRef.current) return;
+    if (isFirstRef.current) {
+      isFirstRef.current = false;
+      return;
+    }
+    const items = contentRef.current.querySelectorAll(".cbd-anim");
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, y: 14, filter: "blur(8px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }
+    );
+    if (items.length) {
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.55, ease: "expo.out", stagger: 0.05, delay: 0.1 }
+      );
+    }
+  }, [activeTab]);
+
+  const tab = CBD_TABS[activeTab];
+
+  return (
+    <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
+      <ScrollReveal className="text-center max-w-2xl mx-auto mb-8 md:mb-10">
+        <p
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
+          style={{
+            color: "rgba(255,255,255,0.7)",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            fontFamily: "var(--font-heading)",
+          }}
+        >
+          <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />A decouvrir
+        </p>
+        <h2
+          className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+          style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+        >
+          Tout savoir sur le <span className="text-white/40">CBD</span>
+        </h2>
+        <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl mx-auto">
+          Histoire, bienfaits, et ce qui fait la difference de LaFleurCBD.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal className="mb-6 md:mb-8 flex justify-center">
+        <div
+          role="tablist"
+          className="inline-flex items-center gap-1 p-1 rounded-full flex-wrap justify-center"
+          style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+        >
+          {CBD_TABS.map((t, i) => {
+            const isActive = i === activeTab;
+            return (
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveTab(i)}
+                className="relative inline-flex items-center px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300"
+                style={{
+                  background: isActive ? "rgba(255,255,255,0.95)" : "transparent",
+                  color: isActive ? "#042D24" : "rgba(255,255,255,0.65)",
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+      </ScrollReveal>
+
+      <div ref={contentRef} className="max-w-5xl mx-auto">
+        <p className="cbd-anim text-center text-sm md:text-base text-white/55 leading-relaxed max-w-2xl mx-auto mb-5 md:mb-7">
+          {tab.intro}
+        </p>
+
+        {activeTab === 0 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-8 md:mb-10">
+              {tab.blocks.map((b) => (
+                <div
+                  key={b.kicker}
+                  className="cbd-anim relative overflow-hidden rounded-3xl p-7 md:p-8"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                  }}
+                >
+                  <p className="text-[10px] uppercase tracking-[0.28em] text-white/45 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                    {b.kicker}
+                  </p>
+                  <h3 className="text-xl md:text-2xl text-white/95 mb-3" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
+                    {b.title}
+                  </h3>
+                  <p className="text-sm text-white/55 leading-relaxed">{b.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="cbd-anim">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/40 text-center mb-5" style={{ fontFamily: "var(--font-heading)" }}>
+                Sous toutes ses formes
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {tab.forms.map((f) => (
+                  <div
+                    key={f.label}
+                    className="px-5 py-3 rounded-2xl text-center"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <p className="text-sm font-semibold text-white/90" style={{ fontFamily: "var(--font-heading)" }}>
+                      {f.label}
+                    </p>
+                    <p className="text-[11px] text-white/45 mt-0.5">{f.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === 1 && <BenefitsConstellation benefits={tab.benefits} />}
+
+        {activeTab === 2 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-10 md:mb-12">
+              {tab.pillars.map((p) => (
+                <div
+                  key={p.num}
+                  className="cbd-anim relative overflow-hidden rounded-3xl p-7 md:p-9 flex items-start gap-5"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                  }}
+                >
+                  <span
+                    className="flex items-center justify-center w-12 h-12 rounded-full shrink-0 text-sm font-semibold text-white/85"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      fontFamily: "var(--font-heading)",
+                    }}
+                  >
+                    {p.num}
+                  </span>
+                  <div>
+                    <h3 className="text-xl md:text-2xl text-white/95 mb-2" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-white/55 leading-relaxed">{p.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="cbd-anim text-center">
+              <p
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
+              >
+                <span className="text-2xl text-white/95" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
+                  100k+
+                </span>
+                <span className="text-xs uppercase tracking-[0.25em] text-white/55" style={{ fontFamily: "var(--font-heading)" }}>
+                  Clients fideles
+                </span>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function StoryTimeline() {
+  const containerRef = useRef(null);
+  const fillRef = useRef(null);
+  const bgBarRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const adjustBar = () => {
+      if (!containerRef.current || !fillRef.current || !bgBarRef.current) return;
+      const dots = containerRef.current.querySelectorAll(".tl-dot");
+      if (dots.length < 2) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const firstRect = dots[0].getBoundingClientRect();
+      const lastRect = dots[dots.length - 1].getBoundingClientRect();
+      const topOffset = firstRect.top + firstRect.height / 2 - containerRect.top;
+      const bottomOffset = containerRect.bottom - (lastRect.top + lastRect.height / 2);
+      [fillRef.current, bgBarRef.current].forEach((el) => {
+        el.style.top = `${topOffset}px`;
+        el.style.bottom = `${bottomOffset}px`;
+      });
+    };
+    adjustBar();
+    window.addEventListener("resize", adjustBar);
+    return () => window.removeEventListener("resize", adjustBar);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      const totalSteps = STORY_STEPS.length;
+      const stepFraction = 1 / (totalSteps - 1);
+      const stepEls = gsap.utils.toArray(".tl-step");
+
+      // Initial hidden states
+      stepEls.forEach((step, i) => {
+        const bubble = step.querySelector(".tl-bubble");
+        const text = step.querySelector(".tl-text");
+        const dot = step.querySelector(".tl-dot");
+        const bubbleSide = i % 2 === 0 ? -1 : 1;
+        gsap.set(bubble, { scale: 0, opacity: 0, x: bubbleSide * 18 });
+        gsap.set(text, { opacity: 0, x: -bubbleSide * 22 });
+        gsap.set(dot, { scale: 0 });
+      });
+      gsap.set(fillRef.current, { scaleY: 0 });
+
+      const sectionEl = containerRef.current.closest("section");
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionEl,
+          start: "top 70%",
+          end: "bottom 70%",
+          scrub: 0.6,
+        },
+      });
+
+      tl.to(fillRef.current, { scaleY: 1, ease: "none", duration: 1 }, 0);
+
+      stepEls.forEach((step, i) => {
+        const bubble = step.querySelector(".tl-bubble");
+        const text = step.querySelector(".tl-text");
+        const dot = step.querySelector(".tl-dot");
+        const stepPos = i * stepFraction;
+
+        tl.to(
+          bubble,
+          { scale: 1, opacity: 1, x: 0, duration: 0.15, ease: "expo.out" },
+          stepPos
+        );
+        tl.to(
+          text,
+          { opacity: 1, x: 0, duration: 0.15, ease: "expo.out" },
+          stepPos + 0.02
+        );
+        tl.to(
+          dot,
+          { scale: 1, duration: 0.1, ease: "back.out(2.2)" },
+          stepPos + 0.04
+        );
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative max-w-4xl mx-auto py-6">
+      <div
+        ref={bgBarRef}
+        aria-hidden
+        className="absolute left-1/2 -translate-x-1/2 w-px"
+        style={{ top: 0, bottom: 0, background: "rgba(255,255,255,0.08)" }}
+      />
+      <div
+        ref={fillRef}
+        aria-hidden
+        className="absolute left-1/2 w-px origin-top shimmer-line"
+        style={{
+          top: 0,
+          bottom: 0,
+          transform: "translateX(-50%) scaleY(0)",
+        }}
+      />
+
+      <div className="space-y-20 md:space-y-28">
+        {STORY_STEPS.map((step, i) => {
+          const bubbleOnLeft = i % 2 === 0;
+          return (
+            <div
+              key={step.title}
+              className="tl-step relative grid grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-10"
+            >
+              <div className="flex justify-end">
+                {bubbleOnLeft ? (
+                  <div
+                    className="tl-bubble flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      boxShadow:
+                        "0 18px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <div className="w-6 h-6 md:w-9 md:h-9 text-white/85">{step.icon}</div>
+                  </div>
+                ) : (
+                  <div className="tl-text max-w-[220px] md:max-w-xs text-right">
+                    <h3
+                      className="text-lg md:text-2xl text-white/95 mb-1.5 md:mb-2"
+                      style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-white/55 leading-relaxed">{step.text}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="tl-dot relative">
+                <span
+                  className="block w-3 h-3 rounded-full"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    boxShadow:
+                      "0 0 0 4px rgba(4,45,36,1), 0 0 14px rgba(255,255,255,0.45)",
+                  }}
+                />
+              </div>
+
+              <div className="flex justify-start">
+                {bubbleOnLeft ? (
+                  <div className="tl-text max-w-[220px] md:max-w-xs text-left">
+                    <h3
+                      className="text-lg md:text-2xl text-white/95 mb-1.5 md:mb-2"
+                      style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-white/55 leading-relaxed">{step.text}</p>
+                  </div>
+                ) : (
+                  <div
+                    className="tl-bubble flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      backdropFilter: "blur(20px)",
+                      WebkitBackdropFilter: "blur(20px)",
+                      boxShadow:
+                        "0 18px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <div className="w-6 h-6 md:w-9 md:h-9 text-white/85">{step.icon}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -1410,7 +2101,7 @@ function TrustBento() {
   const display = { fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 };
 
   return (
-    <section className="relative z-10 py-20 md:py-28 px-6 md:px-14 lg:px-24">
+    <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
       {/* Header */}
       <ScrollReveal className="mb-4 md:mb-5 max-w-3xl">
         <p
@@ -1580,8 +2271,8 @@ function TrustBento() {
             >
               securise
             </h3>
-            <p className="relative mt-3 text-[12px] leading-relaxed" style={{ color: INK_MUTED }}>
-              Paiement chiffré via Stripe. Aucune donnée bancaire stockée sur nos serveurs.
+            <p className="relative mt-3 text-[13px] md:text-sm leading-relaxed" style={{ color: INK_MUTED }}>
+              Paiement chiffré via Stripe.<br />Aucune donnée stockée sur nos serveurs.
             </p>
           </div>
 
@@ -1766,7 +2457,7 @@ export default function Home() {
       <section className="relative z-20 min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 md:px-14 lg:px-24">
         <FadeIn delay={400} className="mb-6">
           <p
-            className="text-sm md:text-base uppercase tracking-[0.3em] text-white/50 font-medium"
+            className="text-sm md:text-base uppercase tracking-[0.3em] font-medium shimmer-text"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             CBD Premium
@@ -1782,7 +2473,7 @@ export default function Home() {
 
         <FadeIn delay={1200} className="mt-8 max-w-md text-center">
           <p className="text-white/40 text-base md:text-lg leading-relaxed" style={{ fontFamily: "var(--font-heading)" }}>
-            Une sélection rigoureuse de fleurs, huiles et résines CBD pour votre bien-être au quotidien.
+            Le CBD Français rigoureusement sélectionné. Fleurs, huiles, résines de haute qualité.
           </p>
         </FadeIn>
 
@@ -1816,7 +2507,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════
           SECTION 2 — CATEGORIES & TOP VENTES
       ══════════════════════════════════════════════ */}
-      <section id="section-catégories" className="relative z-10 pt-16 md:pt-20 pb-14 md:pb-16 px-6 md:px-14 lg:px-24">
+      <section id="section-catégories" className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
         <div className="relative w-full">
           <ScaleReveal>
             <div
@@ -1849,7 +2540,7 @@ export default function Home() {
                     color: INK,
                   }}
                 >
-                  Nos meilleures <RotatingCategoryWord />
+                  Découvrez nos <RotatingCategoryWord />
                 </h2>
               </div>
 
@@ -1885,7 +2576,7 @@ export default function Home() {
             className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
             style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
           >
-            Le CBD qui vous ressemble
+            À chaque besoin, son <span className="text-white/40">CBD</span>
           </h2>
           <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
             Pas la même attente le matin et le soir. Trois usages, trois réponses.
@@ -2076,23 +2767,23 @@ export default function Home() {
             <p
               className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
               style={{
-                color: "#c9b9ec",
-                background: "rgba(130, 95, 195, 0.14)",
-                border: "1px solid rgba(130, 95, 195, 0.28)",
+                color: "rgba(255,255,255,0.7)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.12)",
                 fontFamily: "var(--font-heading)",
               }}
             >
-              <span className="block w-1.5 h-1.5 rounded-full" style={{ background: "#c9b9ec" }} />
-              Nouveautés · Semaine 17
+              <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
+              Nouveautés
             </p>
             <h2
               className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
               style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
             >
-              Fraichement<br />arrives
+              Fraichement <span className="text-white/40">arrives</span>
             </h2>
-            <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/45 leading-relaxed max-w-md">
-              Cette semaine, trois sélections fraîchement récoltées, en quantité limitee.
+            <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/45 leading-relaxed">
+              Découvrez notre dernière gamme de produits.<br />Récoltes fraîches, stocks limités, qualité premium.
             </p>
           </div>
           <a
@@ -2100,17 +2791,17 @@ export default function Home() {
             className="group inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-widest px-4 py-2.5 rounded-full transition-all duration-500"
             style={{
               color: "#ffffff",
-              background: "rgba(130, 95, 195, 0.16)",
-              border: "1px solid rgba(130, 95, 195, 0.35)",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.12)",
               fontFamily: "var(--font-heading)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(130, 95, 195, 0.32)";
-              e.currentTarget.style.borderColor = "rgba(130, 95, 195, 0.55)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(130, 95, 195, 0.16)";
-              e.currentTarget.style.borderColor = "rgba(130, 95, 195, 0.35)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
             }}
           >
             Tout voir
@@ -2231,121 +2922,37 @@ export default function Home() {
           SECTION 6 — A PROPOS / NOTRE HISTOIRE
       ══════════════════════════════════════════════ */}
       <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
-          {/* Visual */}
-          <ScrollReveal className="lg:col-span-5">
-            <div
-              className="relative aspect-[4/5] rounded-3xl overflow-hidden"
-              style={{
-                background: "linear-gradient(145deg, rgba(255,255,255,0.96), rgba(244,241,234,0.9))",
-                border: "1px solid rgba(255,255,255,0.68)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                boxShadow: "0 30px 70px -35px rgba(0,0,0,0.55)",
-              }}
-            >
-              <img
-                src="/pochons/pochon_image_vert.png"
-                alt="Notre histoire"
-                className="absolute inset-0 w-full h-full object-contain p-12"
-                style={{ filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.5))" }}
-              />
-              <div
-                className="absolute bottom-6 left-6 right-6 px-5 py-4 rounded-2xl flex items-center gap-4"
-                style={{
-                  background: "rgba(4,45,36,0.7)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map((n) => (
-                    <span
-                      key={n}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold text-white/80"
-                      style={{
-                        background: `rgba(255,255,255,${0.1 + n * 0.05})`,
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
-                      {String.fromCharCode(64 + n * 3)}
-                    </span>
-                  ))}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold text-white/85" style={{ fontFamily: "var(--font-heading)" }}>
-                    Une equipe passionnee
-                  </p>
-                  <p className="text-[10px] text-white/40 mt-0.5">A votre service depuis 2021</p>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-12 md:mb-20">
+          <p
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
+            style={{
+              color: "rgba(255,255,255,0.7)",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              fontFamily: "var(--font-heading)",
+            }}
+          >
+            <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
+            Notre histoire
+          </p>
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+            style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+          >
+            Une passion, une exigence
+          </h2>
+          <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl mx-auto">
+            De la sélection à la livraison, chaque étape garantit un CBD d&apos;exception.
+          </p>
+        </ScrollReveal>
 
-          {/* Text */}
-          <div className="lg:col-span-7">
-            <ScrollReveal>
-              <p
-                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
-                style={{
-                  color: "rgba(255,255,255,0.7)",
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
-                <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
-                Notre histoire
-              </p>
-              <h2
-                className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/90 mb-4 md:mb-5"
-                style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
-              >
-                Une passion, une exigence
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal delay={150}>
-              <div className="space-y-5 max-w-xl text-white/55 leading-relaxed">
-                <p>
-                  Né d'une conviction simple : le CBD mérite la même exigence qu'un grand vin.
-                  Nous sélectionnons chaque variété avec rigueur, en privilégiant les producteurs
-                  europeens engages dans une demarche responsable.
-                </p>
-                <p>
-                  Chaque lot est analysé, chaque produit est testé. Nous croyons à la transparence
-                  totale : vous savez exactement ce que vous consommez.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* Stats counters */}
-            <ScrollReveal delay={300}>
-              <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.09)" }}>
-                {STATS.map((s) => (
-                  <div
-                    key={s.label}
-                    className="p-5 md:p-6"
-                    style={{ background: "rgba(4,45,36,0.6)" }}
-                  >
-                    <p
-                      className="text-3xl md:text-4xl font-black text-white/90 leading-none"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      <Counter end={s.value} suffix={s.suffix} />
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mt-3" style={{ fontFamily: "var(--font-heading)" }}>
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
+        <StoryTimeline />
       </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 6.5 — CBD EXPLAINED (toggle 3 onglets)
+      ══════════════════════════════════════════════ */}
+      <CBDExplained />
 
       {/* ══════════════════════════════════════════════
           SECTION 7 — GUIDE CBD (educatif / SEO)
@@ -2361,32 +2968,30 @@ export default function Home() {
               border: "1px solid rgba(255,255,255,0.09)",
             }}
           >
-            <div className="mb-10 md:mb-14 flex items-end justify-between gap-8 flex-wrap">
-              <div>
-                <p
-                  className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 px-3 py-1 rounded-full"
-                  style={{
-                    color: INK_MUTED,
-                    background: "rgba(10,37,32,0.05)",
-                    border: `1px solid ${HAIRLINE}`,
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: INK }} />
-                  Guide CBD
-                </p>
-                <h2
-                  className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight"
-                  style={{
-                    fontFamily: "Glorify, var(--font-heading)",
-                    fontWeight: 400,
-                    color: INK,
-                  }}
-                >
-                  Tout comprendre, simplement
-                </h2>
-              </div>
-              <p className="max-w-xs text-sm leading-relaxed" style={{ color: INK_MUTED }}>
+            <div className="mb-4 md:mb-5 flex flex-col items-center text-center">
+              <p
+                className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.24em] mb-4 md:mb-5 px-2.5 py-0.5 rounded-full"
+                style={{
+                  color: "#2d7a4a",
+                  background: "rgba(45,122,74,0.08)",
+                  border: "1px solid rgba(45,122,74,0.18)",
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                <span className="w-1 h-1 rounded-full" style={{ background: "#2d7a4a" }} />
+                Guide CBD
+              </p>
+              <h2
+                className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight"
+                style={{
+                  fontFamily: "Glorify, var(--font-heading)",
+                  fontWeight: 400,
+                  color: INK,
+                }}
+              >
+                Le CBD, expliqué <span style={{ color: INK_DIM }}>simplement</span>
+              </h2>
+              <p className="mt-2 md:mt-2.5 text-sm md:text-base leading-relaxed" style={{ color: INK_MUTED }}>
                 Des réponses claires aux questions les plus fréquentes sur le CBD.
               </p>
             </div>
@@ -2410,15 +3015,14 @@ export default function Home() {
                       e.currentTarget.style.boxShadow = "none";
                     }}
                   >
-                    <div className="relative aspect-[4/3] flex items-center justify-center overflow-hidden" style={{ background: SURFACE }}>
+                    <div className="relative aspect-[4/3] overflow-hidden" style={{ background: SURFACE }}>
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="w-[60%] h-[80%] object-contain transition-transform duration-700 group-hover:scale-110"
-                        style={{ filter: "drop-shadow(0 18px 24px rgba(10,37,32,0.18))" }}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    <div className="p-5">
+                    <div className="p-5 flex flex-col items-center text-center">
                       <p
                         className="text-[10px] uppercase tracking-[0.25em] mb-3"
                         style={{ color: INK_DIM, fontFamily: "var(--font-heading)" }}
@@ -2567,16 +3171,16 @@ export default function Home() {
               }}
             >
               <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
-              Questions fréquentes
+              FAQ
             </p>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90 mb-4 md:mb-5"
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/90 mb-4 md:mb-5"
+              style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
             >
-              On vous<br />répond
+              Questions <span className="text-white/40">frequentes</span>
             </h2>
-            <p className="text-white/40 text-sm md:text-base leading-relaxed max-w-sm">
-              Une question qui n'apparait pas ici ? Notre équipe vous répond sous 24h.
+            <p className="text-white/40 text-sm md:text-base leading-relaxed">
+              Une question qui n&apos;apparait pas ici ?<br />Notre équipe vous répond sous 24h.
             </p>
             <a
               href="/contact"
@@ -2668,8 +3272,7 @@ export default function Home() {
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-[55%] h-[80%] object-contain transition-transform duration-700 group-hover:scale-110"
-                    style={{ filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.45))" }}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6 md:p-7">
@@ -2748,7 +3351,7 @@ export default function Home() {
                   Restez informé
                 </h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4 md:mb-5 max-w-md mx-auto" style={{color: "rgba(4,45,36,0.6)"}}>
-                  Nouveautés, conseils et offres exclusives — directement dans votre boîte mail. Pas de spam, promis.
+                  Nouveautés, conseils et offres exclusives, directement dans votre boîte mail. Pas de spam, promis.
                 </p>
               </ScrollReveal>
 
@@ -2801,56 +3404,213 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          SECTION 13 — POCHONS SHOWCASE (existing 3D)
+          SECTION 13 — POCHONS SHOWCASE (disabled)
       ══════════════════════════════════════════════ */}
-      <section id="section-showcase" className="relative z-10" style={{ height: "250vh" }}>
-        <div className="sticky top-0 h-screen flex items-end justify-center overflow-hidden">
-          {/* Pochons rendered by ScrollPochon (fixed) */}
-        </div>
-      </section>
+      {false && (
+        <section id="section-showcase" className="relative z-10" style={{ height: "250vh" }}>
+          <div className="sticky top-0 h-screen flex items-end justify-center overflow-hidden">
+            {/* Pochons rendered by ScrollPochon (fixed) */}
+          </div>
+        </section>
+      )}
 
       {/* ══════════════════════════════════════════════
-          SECTION 14 — DISCLAIMER LEGAL
+          FOOTER
       ══════════════════════════════════════════════ */}
-      <section className="relative z-10 px-6 md:px-14 lg:px-24 pb-16">
-        <ScrollReveal>
-          <div
-            className="rounded-2xl p-6 md:p-8 max-w-4xl mx-auto"
-            style={{
-              background: "rgba(4,45,36,0.55)",
-              border: "1px solid rgba(255,255,255,0.09)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-            }}
-          >
-            <div className="flex items-start gap-4">
-              <span
-                className="flex items-center justify-center w-9 h-9 rounded-full shrink-0 mt-0.5"
-                style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  color: "rgba(255,255,255,0.6)",
-                }}
+      <footer
+        className="relative z-10 px-6 md:px-14 lg:px-24 pt-16 md:pt-20 pb-10"
+        style={{ background: "#ffffff", color: "#0a2520" }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+            {/* Brand */}
+            <div>
+              <p
+                className="text-2xl uppercase tracking-tight mb-4"
+                style={{ fontFamily: "Ahsing, var(--font-heading)", color: "#0a2520" }}
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 8v5M12 16h.01" />
-                </svg>
-              </span>
-              <div className="text-xs leading-relaxed text-white/45">
-                <p className="font-semibold text-white/70 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  Information importante
-                </p>
-                <p>
-                  Nos produits contiennent un taux de THC strictement inférieur à 0,3%, conformément à la réglementation française.
-                  Ils ne sont pas des médicaments et ne peuvent se substituer à un avis médical. Déconseillé aux femmes enceintes ou allaitantes,
-                  aux mineurs et aux personnes sous traitement médicamenteux. Vente interdite aux moins de 18 ans.
-                </p>
-              </div>
+                LaFleurCBD
+              </p>
+              <p className="text-sm leading-relaxed max-w-xs" style={{ color: "rgba(10,37,32,0.6)" }}>
+                Le CBD Francais rigoureusement selectionne. Fleurs, huiles, resines de haute qualite.
+              </p>
+            </div>
+
+            {/* Boutique */}
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em] mb-5"
+                style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+              >
+                Boutique
+              </p>
+              <ul className="space-y-3 text-sm" style={{ color: "rgba(10,37,32,0.7)" }}>
+                {["Fleurs CBD", "Huiles CBD", "Resines CBD", "Nouveautes"].map((item) => (
+                  <li key={item}>
+                    <a
+                      href="/products"
+                      className="transition-colors"
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#0a2520")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.7)")}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Aide */}
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em] mb-5"
+                style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+              >
+                Infos pratiques
+              </p>
+              <ul className="space-y-3 text-sm" style={{ color: "rgba(10,37,32,0.7)" }}>
+                {[
+                  { label: "Livraison", href: "/livraison" },
+                  { label: "Mentions legales", href: "/mentions-legales" },
+                  { label: "CGV", href: "/cgv" },
+                  { label: "Confidentialite", href: "/confidentialite" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="transition-colors"
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#0a2520")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.7)")}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em] mb-5"
+                style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+              >
+                Nous contacter
+              </p>
+              <ul className="space-y-3 text-sm" style={{ color: "rgba(10,37,32,0.7)" }}>
+                <li>
+                  <a
+                    href="tel:+33189720196"
+                    className="inline-flex items-center gap-2 transition-colors"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#0a2520")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.7)")}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-3.5 h-3.5" style={{ color: "rgba(10,37,32,0.4)" }}>
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    01 89 72 01 96
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:contact@lafleurcbd.fr"
+                    className="inline-flex items-center gap-2 transition-colors"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#0a2520")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,37,32,0.7)")}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-3.5 h-3.5" style={{ color: "rgba(10,37,32,0.4)" }}>
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="M3 7l9 6 9-6" />
+                    </svg>
+                    contact@lafleurcbd.fr
+                  </a>
+                </li>
+                <li className="text-xs pt-1" style={{ color: "rgba(10,37,32,0.4)" }}>
+                  Lun – Ven · 10h – 18h
+                </li>
+              </ul>
             </div>
           </div>
-        </ScrollReveal>
-      </section>
+
+          {/* Bottom bar */}
+          <div
+            className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t"
+            style={{ borderColor: "rgba(10,37,32,0.08)" }}
+          >
+            <p className="text-xs" style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.4)" }}>
+              © {new Date().getFullYear()} LaFleurCBD. Tous droits reserves.
+            </p>
+
+            <div className="flex items-center gap-3">
+              {[
+                {
+                  name: "Instagram",
+                  href: "#",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                    </svg>
+                  ),
+                },
+                {
+                  name: "TikTok",
+                  href: "#",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Facebook",
+                  href: "#",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  ),
+                },
+                {
+                  name: "YouTube",
+                  href: "#",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+                      <path d="M9.75 15.02V8.48L15.5 11.75z" fill="currentColor" />
+                    </svg>
+                  ),
+                },
+              ].map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  aria-label={s.name}
+                  className="flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300"
+                  style={{
+                    background: "rgba(10,37,32,0.04)",
+                    border: "1px solid rgba(10,37,32,0.1)",
+                    color: "rgba(10,37,32,0.55)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(10,37,32,0.1)";
+                    e.currentTarget.style.borderColor = "rgba(10,37,32,0.2)";
+                    e.currentTarget.style.color = "#0a2520";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(10,37,32,0.04)";
+                    e.currentTarget.style.borderColor = "rgba(10,37,32,0.1)";
+                    e.currentTarget.style.color = "rgba(10,37,32,0.55)";
+                  }}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
