@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef, Fragment } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollPochon from "@/components/ScrollPochon";
@@ -454,6 +454,17 @@ const REVIEWS = [
   { name: "Julien D.",  city: "Marseille", rating: 4, text: "Très bon rapport qualité-prix, conseils pertinents par chat. Je recommande sans hésiter." },
   { name: "Marie P.",   city: "Toulouse",  rating: 5, text: "Première commande, déjà conquise. Tout est conforme aux descriptions, et bien plus encore." },
   { name: "Thomas B.",  city: "Nantes",    rating: 5, text: "Le service client repond vite et bien. Les analyses lab sont disponibles, ca change tout." },
+];
+
+const REVIEWS_2 = [
+  { name: "Lucas G.",   city: "Strasbourg",   rating: 5, text: "Sans hésiter le meilleur CBD de France. Les fleurs CBD bio sont d'une qualité incomparable, parfums riches et effets bien là." },
+  { name: "Emma T.",    city: "Rennes",       rating: 5, text: "Je commande mes huiles CBD chez eux depuis 6 mois. Livraison 24h, packaging discret, qualité au rendez-vous à chaque fois." },
+  { name: "Maxime V.",  city: "Nice",         rating: 5, text: "Boutique CBD française fiable, transparente sur les analyses labo. Les résines artisanales valent vraiment le détour." },
+  { name: "Clara F.",   city: "Lille",        rating: 4, text: "Très bonne sélection de CBD premium. Les conseillers sont compétents, ils m'ont aidé à choisir le bon dosage pour mon sommeil." },
+  { name: "Hugo M.",    city: "Grenoble",     rating: 5, text: "Le CBD français au top. Cultures bio, traçabilité totale, prix corrects. Difficile de faire mieux dans le secteur." },
+  { name: "Lea R.",     city: "Montpellier",  rating: 5, text: "Qualité CBD supérieure et service client réactif. La référence parmi les boutiques CBD en ligne pour moi désormais." },
+  { name: "Antoine D.", city: "Angers",       rating: 5, text: "Fleurs CBD indoor exceptionnelles, parfums marqués et effets puissants. Je ne commanderai plus ailleurs." },
+  { name: "Manon B.",   city: "Reims",        rating: 4, text: "Premier achat dans cette boutique CBD : huile 10% impeccable, livraison rapide, je recommande sans réserve." },
 ];
 
 const FAQS = [
@@ -1322,6 +1333,221 @@ const CBD_TABS = [
   },
 ];
 
+function WhyLaFleurBento() {
+  const cardBase = {
+    background: "linear-gradient(150deg, #ffffff 0%, #f7f6f1 100%)",
+    border: "1px solid rgba(255,255,255,0.7)",
+    boxShadow:
+      "0 28px 60px -28px rgba(0,0,0,0.55), 0 10px 28px -14px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.85)",
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+      {/* Card 01 — Qualité (large hero) */}
+      <div
+        className="cbd-anim group relative overflow-hidden rounded-3xl p-6 md:p-8 md:col-span-7 transition-transform duration-500 hover:-translate-y-1"
+        style={cardBase}
+      >
+        <div
+          aria-hidden
+          className="absolute -bottom-24 -right-20 w-72 h-72 rounded-full blur-3xl opacity-60 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(45,122,74,0.22), transparent 70%)" }}
+        />
+        <p
+          className="relative text-[10px] uppercase tracking-[0.28em] mb-3"
+          style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+        >
+          01 · Exigence
+        </p>
+        <div className="relative flex items-center gap-5 md:gap-7 flex-wrap">
+          <div
+            className="tracking-tight whitespace-nowrap inline-flex items-start"
+            style={{
+              fontFamily: "Glorify, var(--font-heading)",
+              fontWeight: 400,
+              fontSize: "clamp(3.5rem, 8.5vw, 6rem)",
+              lineHeight: 1.15,
+              paddingTop: "0.18em",
+              paddingRight: "0.1em",
+              background: "linear-gradient(135deg, #0a2520 0%, #2d7a4a 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            <span>100</span>
+            <span style={{ fontSize: "0.28em", marginLeft: "0.15em", marginTop: "0.4em", lineHeight: 1 }}>%</span>
+          </div>
+          <div className="flex-1 min-w-[200px]">
+            <h3
+              className="text-xl md:text-2xl mb-2 leading-[1.05]"
+              style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400, color: "#0a2520" }}
+            >
+              Qualité supérieure
+            </h3>
+            <p className="text-sm leading-relaxed" style={{ color: "rgba(10,37,32,0.6)" }}>
+              Sélection rigoureuse, tolérance zéro sur la qualité et la sécurité de chaque produit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 02 — Variété (chips) */}
+      <div
+        className="cbd-anim group relative overflow-hidden rounded-3xl p-8 md:p-10 md:col-span-5 transition-transform duration-500 hover:-translate-y-1 flex flex-col justify-between"
+        style={cardBase}
+      >
+        <div>
+          <p
+            className="text-[10px] uppercase tracking-[0.28em] mb-3"
+            style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+          >
+            02 · Gamme complète
+          </p>
+          <h3
+            className="text-2xl md:text-3xl mb-3 leading-[1.05]"
+            style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400, color: "#0a2520" }}
+          >
+            Variété et innovation
+          </h3>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(10,37,32,0.6)" }}>
+            Une gamme complète pensée pour chaque besoin.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { label: "Fleurs", color: "#2d7a4a" },
+            { label: "Huiles", color: "#5fa8d3" },
+            { label: "Resines", color: "#7a4a2a" },
+          ].map((t) => (
+            <span
+              key={t.label}
+              className="inline-flex items-center gap-1.5 text-[11px] px-3 py-1.5 rounded-full"
+              style={{
+                background: "rgba(10,37,32,0.06)",
+                color: t.color,
+                border: "1px solid rgba(10,37,32,0.1)",
+                fontFamily: "var(--font-heading)",
+              }}
+            >
+              <span className="block w-1.5 h-1.5 rounded-full dot-pulse" style={{ background: t.color, color: t.color }} />
+              {t.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Card 03 — Livraison 48h (stat + countries) */}
+      <div
+        className="cbd-anim group relative overflow-hidden rounded-3xl p-8 md:p-10 md:col-span-5 transition-transform duration-500 hover:-translate-y-1 flex flex-col justify-between"
+        style={cardBase}
+      >
+        <div>
+          <p
+            className="text-[10px] uppercase tracking-[0.28em] mb-3"
+            style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+          >
+            03 · Livraison express
+          </p>
+          <div className="flex items-baseline gap-3 mb-2">
+            <span
+              className="text-6xl md:text-7xl leading-[0.85] tracking-tight"
+              style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400, color: "#0a2520" }}
+            >
+              48h
+            </span>
+            <span className="text-xs uppercase tracking-[0.2em]" style={{ color: "rgba(10,37,32,0.45)", fontFamily: "var(--font-heading)" }}>
+              Maximum
+            </span>
+          </div>
+          <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(10,37,32,0.6)" }}>
+            Discrétion totale, suivi en temps réel.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {["FR", "BE", "LU", "DE", "IT", "ES"].map((c) => (
+            <span
+              key={c}
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full text-[10px] font-semibold tabular-nums"
+              style={{
+                background: "rgba(10,37,32,0.06)",
+                color: "rgba(10,37,32,0.7)",
+                border: "1px solid rgba(10,37,32,0.1)",
+                fontFamily: "var(--font-heading)",
+              }}
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Card 04 — Expertise (avatars + 100k) */}
+      <div
+        className="cbd-anim group relative overflow-hidden rounded-3xl p-8 md:p-10 md:col-span-7 transition-transform duration-500 hover:-translate-y-1"
+        style={cardBase}
+      >
+        <div
+          aria-hidden
+          className="absolute -top-20 -left-16 w-64 h-64 rounded-full blur-3xl opacity-50 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(95,168,211,0.18), transparent 70%)" }}
+        />
+        <p
+          className="relative text-[10px] uppercase tracking-[0.28em] mb-3"
+          style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+        >
+          04 · Conseil humain
+        </p>
+        <div className="relative flex items-center gap-6 md:gap-8 flex-wrap">
+          <div className="flex items-center">
+            {["A", "M", "J", "L"].map((c, i) => (
+              <span
+                key={c}
+                className="flex items-center justify-center w-12 h-12 rounded-full text-sm font-semibold"
+                style={{
+                  marginLeft: i === 0 ? 0 : "-14px",
+                  background: i % 2 === 0 ? "#0a2520" : "#2d7a4a",
+                  color: "#ffffff",
+                  border: "2px solid #ffffff",
+                  fontFamily: "var(--font-heading)",
+                  zIndex: 4 - i,
+                }}
+              >
+                {c}
+              </span>
+            ))}
+            <span
+              className="flex items-center justify-center w-12 h-12 rounded-full text-[11px] font-bold"
+              style={{
+                marginLeft: "-14px",
+                background: "#ffffff",
+                color: "#0a2520",
+                border: "2px solid #ffffff",
+                fontFamily: "var(--font-heading)",
+                boxShadow: "0 4px 12px -4px rgba(10,37,32,0.25)",
+              }}
+            >
+              100k
+            </span>
+          </div>
+          <div className="flex-1 min-w-[200px]">
+            <h3
+              className="text-2xl md:text-3xl mb-2 leading-[1.05]"
+              style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400, color: "#0a2520" }}
+            >
+              Une équipe à vos côtés
+            </h3>
+            <p className="text-sm md:text-base leading-relaxed" style={{ color: "rgba(10,37,32,0.6)" }}>
+              Plus de 100 000 clients accompagnés. Conseillers formés à la plante, ses variétés et ses usages.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BenefitsConstellation({ benefits }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const detailRef = useRef(null);
@@ -1349,8 +1575,8 @@ function BenefitsConstellation({ benefits }) {
 
   return (
     <div
-      className="relative mx-auto"
-      style={{ maxWidth: "528px", width: "100%", aspectRatio: "1 / 1" }}
+      className="relative mx-auto -mt-16 md:-mt-30 pointer-events-none"
+      style={{ maxWidth: "920px", width: "100%", aspectRatio: "1 / 1" }}
     >
       {/* Branches (dotted lines from center to each icon) */}
       <svg
@@ -1359,8 +1585,8 @@ function BenefitsConstellation({ benefits }) {
         viewBox="0 0 600 600"
       >
         {positions.map((pos, i) => {
-          const radius = 210;
-          const inner = 70;
+          const radius = 146;
+          const inner = 48;
           const x1 = 300 + pos.x * inner;
           const y1 = 300 + pos.y * inner;
           const x2 = 300 + pos.x * radius;
@@ -1385,16 +1611,16 @@ function BenefitsConstellation({ benefits }) {
       {/* Center detail panel */}
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-6"
-        style={{ width: "min(60%, 280px)" }}
+        style={{ width: "min(60%, 400px)" }}
       >
         <div ref={detailRef} key={activeIdx}>
           <h3
-            className="text-2xl md:text-3xl text-white/95 mb-3"
+            className="text-3xl md:text-4xl text-white/95 mb-3"
             style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
           >
             {active.title}
           </h3>
-          <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+          <p className="text-sm md:text-base text-white/60 leading-relaxed">
             {active.text}
           </p>
         </div>
@@ -1404,14 +1630,14 @@ function BenefitsConstellation({ benefits }) {
       {benefits.map((b, i) => {
         const pos = positions[i];
         const isActive = i === activeIdx;
-        const radius = 40; // percent of container half-size — icon center; line outer (210 viewBox) matches icon inner edge
+        const radius = 27.7; // percent of container — icon center synced with line outer (146 viewBox)
         return (
           <button
             key={b.title}
             type="button"
             onClick={() => setActiveIdx(i)}
             aria-label={b.title}
-            className="absolute flex flex-col items-center transition-all duration-500"
+            className="absolute flex flex-col items-center transition-all duration-500 pointer-events-auto"
             style={{
               left: `${50 + pos.x * radius}%`,
               top: `${50 + pos.y * radius}%`,
@@ -1422,8 +1648,8 @@ function BenefitsConstellation({ benefits }) {
             <span
               className="flex items-center justify-center rounded-full transition-all duration-500"
               style={{
-                width: isActive ? "64px" : "52px",
-                height: isActive ? "64px" : "52px",
+                width: isActive ? "91px" : "74px",
+                height: isActive ? "91px" : "74px",
                 background: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.05)",
                 color: isActive ? "#042D24" : "rgba(255,255,255,0.7)",
                 border: isActive
@@ -1436,7 +1662,7 @@ function BenefitsConstellation({ benefits }) {
                   : "0 8px 24px -10px rgba(0,0,0,0.5)",
               }}
             >
-              <span className="block w-5 h-5">{b.icon}</span>
+              <span className="block w-7 h-7">{b.icon}</span>
             </span>
             <span
               className="block mt-2 text-[10px] uppercase tracking-[0.2em] transition-all duration-500"
@@ -1470,14 +1696,14 @@ function CBDExplained() {
     const items = contentRef.current.querySelectorAll(".cbd-anim");
     gsap.fromTo(
       contentRef.current,
-      { opacity: 0, y: 14, filter: "blur(8px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }
+      { opacity: 0, y: 10, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "expo.out", overwrite: true }
     );
     if (items.length) {
       gsap.fromTo(
         items,
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "expo.out", stagger: 0.05, delay: 0.1 }
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.35, ease: "expo.out", stagger: 0.025, overwrite: true }
       );
     }
   }, [activeTab]);
@@ -1486,7 +1712,7 @@ function CBDExplained() {
 
   return (
     <section className="relative z-10 py-20 md:py-24 px-6 md:px-14 lg:px-24">
-      <ScrollReveal className="text-center max-w-2xl mx-auto mb-8 md:mb-10">
+      <ScrollReveal className="text-center max-w-2xl mx-auto mb-4 md:mb-5">
         <p
           className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
           style={{
@@ -1504,12 +1730,12 @@ function CBDExplained() {
         >
           Tout savoir sur le <span className="text-white/40">CBD</span>
         </h2>
-        <p className="mt-2 md:mt-2.5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl mx-auto">
+        <p className="mt-4 md:mt-5 text-sm md:text-base text-white/55 leading-relaxed max-w-xl mx-auto">
           Histoire, bienfaits, et ce qui fait la difference de LaFleurCBD.
         </p>
       </ScrollReveal>
 
-      <ScrollReveal className="mb-6 md:mb-8 flex justify-center">
+      <ScrollReveal className="mb-4 md:mb-5 flex justify-center">
         <div
           role="tablist"
           className="inline-flex items-center gap-1 p-1 rounded-full flex-wrap justify-center"
@@ -1538,7 +1764,7 @@ function CBDExplained() {
       </ScrollReveal>
 
       <div ref={contentRef} className="max-w-5xl mx-auto">
-        <p className="cbd-anim text-center text-sm md:text-base text-white/55 leading-relaxed max-w-2xl mx-auto mb-5 md:mb-7">
+        <p className="cbd-anim text-center text-sm md:text-base text-white/55 leading-relaxed max-w-2xl mx-auto mb-4 md:mb-5">
           {tab.intro}
         </p>
 
@@ -1548,43 +1774,68 @@ function CBDExplained() {
               {tab.blocks.map((b) => (
                 <div
                   key={b.kicker}
-                  className="cbd-anim relative overflow-hidden rounded-3xl p-7 md:p-8"
+                  className="cbd-anim relative overflow-hidden rounded-3xl p-7 md:p-8 flex flex-col items-center text-center"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    backdropFilter: "blur(20px)",
-                    WebkitBackdropFilter: "blur(20px)",
+                    background: "linear-gradient(150deg, #ffffff 0%, #f7f6f1 100%)",
+                    border: "1px solid rgba(255,255,255,0.7)",
+                    boxShadow:
+                      "0 24px 50px -24px rgba(0,0,0,0.45), 0 8px 20px -10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.85)",
                   }}
                 >
-                  <p className="text-[10px] uppercase tracking-[0.28em] text-white/45 mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                  <p
+                    className="text-[10px] uppercase tracking-[0.28em] mb-3"
+                    style={{ fontFamily: "var(--font-heading)", color: "rgba(10,37,32,0.45)" }}
+                  >
                     {b.kicker}
                   </p>
-                  <h3 className="text-xl md:text-2xl text-white/95 mb-3" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
+                  <h3
+                    className="text-xl md:text-2xl mb-3 leading-[1.05]"
+                    style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400, color: "#0a2520" }}
+                  >
                     {b.title}
                   </h3>
-                  <p className="text-sm text-white/55 leading-relaxed">{b.text}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(10,37,32,0.6)" }}>
+                    {b.text}
+                  </p>
                 </div>
               ))}
             </div>
             <div className="cbd-anim">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-white/40 text-center mb-5" style={{ fontFamily: "var(--font-heading)" }}>
+              <p
+                className="text-[10px] uppercase tracking-[0.28em] text-center mb-5 shimmer-text"
+                style={{ fontFamily: "var(--font-heading)", animationDuration: "7s" }}
+              >
                 Sous toutes ses formes
               </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {tab.forms.map((f) => (
-                  <div
-                    key={f.label}
-                    className="px-5 py-3 rounded-2xl text-center"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                    }}
-                  >
-                    <p className="text-sm font-semibold text-white/90" style={{ fontFamily: "var(--font-heading)" }}>
-                      {f.label}
-                    </p>
-                    <p className="text-[11px] text-white/45 mt-0.5">{f.desc}</p>
-                  </div>
+              <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-2 md:gap-0">
+                {tab.forms.map((f, idx) => (
+                  <Fragment key={f.label}>
+                    <div
+                      className="px-3 py-2 md:px-4 md:py-2.5 rounded-xl md:rounded-2xl text-center shrink-0"
+                      style={{
+                        background: "linear-gradient(150deg, #ffffff 0%, #f7f6f1 100%)",
+                        border: "1px solid rgba(255,255,255,0.7)",
+                        boxShadow:
+                          "0 10px 24px -14px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.85)",
+                      }}
+                    >
+                      <p
+                        className="text-xs md:text-sm font-semibold"
+                        style={{ fontFamily: "var(--font-heading)", color: "#0a2520" }}
+                      >
+                        {f.label}
+                      </p>
+                      <p className="text-[10px] md:text-[11px] mt-0.5 whitespace-nowrap" style={{ color: "rgba(10,37,32,0.55)" }}>
+                        {f.desc}
+                      </p>
+                    </div>
+                    {idx < tab.forms.length - 1 && (
+                      <span
+                        aria-hidden
+                        className="hidden md:inline-block mx-2 h-px w-8 shimmer-line-dotted shrink-0"
+                      />
+                    )}
+                  </Fragment>
                 ))}
               </div>
             </div>
@@ -1593,57 +1844,7 @@ function CBDExplained() {
 
         {activeTab === 1 && <BenefitsConstellation benefits={tab.benefits} />}
 
-        {activeTab === 2 && (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-10 md:mb-12">
-              {tab.pillars.map((p) => (
-                <div
-                  key={p.num}
-                  className="cbd-anim relative overflow-hidden rounded-3xl p-7 md:p-9 flex items-start gap-5"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    backdropFilter: "blur(20px)",
-                    WebkitBackdropFilter: "blur(20px)",
-                  }}
-                >
-                  <span
-                    className="flex items-center justify-center w-12 h-12 rounded-full shrink-0 text-sm font-semibold text-white/85"
-                    style={{
-                      background: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      fontFamily: "var(--font-heading)",
-                    }}
-                  >
-                    {p.num}
-                  </span>
-                  <div>
-                    <h3 className="text-xl md:text-2xl text-white/95 mb-2" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
-                      {p.title}
-                    </h3>
-                    <p className="text-sm text-white/55 leading-relaxed">{p.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="cbd-anim text-center">
-              <p
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full"
-                style={{
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                }}
-              >
-                <span className="text-2xl text-white/95" style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}>
-                  100k+
-                </span>
-                <span className="text-xs uppercase tracking-[0.25em] text-white/55" style={{ fontFamily: "var(--font-heading)" }}>
-                  Clients fideles
-                </span>
-              </p>
-            </div>
-          </>
-        )}
+        {activeTab === 2 && <WhyLaFleurBento />}
       </div>
     </section>
   );
@@ -1763,15 +1964,12 @@ function StoryTimeline() {
                   <div
                     className="tl-bubble flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full"
                     style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      backdropFilter: "blur(20px)",
-                      WebkitBackdropFilter: "blur(20px)",
-                      boxShadow:
-                        "0 18px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
+                      background: "#ffffff",
+                      border: "1px solid rgba(255,255,255,0.6)",
+                      boxShadow: "0 18px 40px -20px rgba(0,0,0,0.6)",
                     }}
                   >
-                    <div className="w-6 h-6 md:w-9 md:h-9 text-white/85">{step.icon}</div>
+                    <div className="w-6 h-6 md:w-9 md:h-9" style={{ color: "#0a2520" }}>{step.icon}</div>
                   </div>
                 ) : (
                   <div className="tl-text max-w-[220px] md:max-w-xs text-right">
@@ -1812,15 +2010,12 @@ function StoryTimeline() {
                   <div
                     className="tl-bubble flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full"
                     style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      backdropFilter: "blur(20px)",
-                      WebkitBackdropFilter: "blur(20px)",
-                      boxShadow:
-                        "0 18px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
+                      background: "#ffffff",
+                      border: "1px solid rgba(255,255,255,0.6)",
+                      boxShadow: "0 18px 40px -20px rgba(0,0,0,0.6)",
                     }}
                   >
-                    <div className="w-6 h-6 md:w-9 md:h-9 text-white/85">{step.icon}</div>
+                    <div className="w-6 h-6 md:w-9 md:h-9" style={{ color: "#0a2520" }}>{step.icon}</div>
                   </div>
                 )}
               </div>
@@ -3076,10 +3271,10 @@ export default function Home() {
                 Ils nous font confiance
               </p>
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90"
-                style={{ fontFamily: "var(--font-heading)" }}
+                className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+                style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
               >
-                Avis clients
+                Avis <span className="text-white/40">clients</span>
               </h2>
             </div>
 
@@ -3107,10 +3302,57 @@ export default function Home() {
           </ScrollReveal>
         </div>
 
-        {/* Marquee testimonials (auto scroll) */}
-        <div className="relative overflow-hidden group" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
+        {/* Marquee testimonials (auto scroll - first row) */}
+        <div className="relative overflow-hidden group mb-6" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           <div className="flex gap-6 animate-marquee w-max group-hover:[animation-play-state:paused]" style={{ animationDuration: "60s" }}>
             {[...REVIEWS, ...REVIEWS].map((r, i) => (
+              <article
+                key={i}
+                className="w-[320px] md:w-[400px] shrink-0 p-7 md:p-8 rounded-3xl"
+                style={{
+                  background: "rgba(4,45,36,0.55)",
+                  border: "1px solid rgba(255,255,255,0.09)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                }}
+              >
+                <div className="flex items-center gap-1 mb-5">
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <svg key={idx} viewBox="0 0 24 24" fill={idx < r.rating ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.15)"} className="w-3.5 h-3.5">
+                      <path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.6L6 22l1.5-7.2L2 10l7.1-1.1z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-white/75 text-sm md:text-base leading-relaxed mb-8 min-h-[5.5em]">
+                  « {r.text} »
+                </p>
+                <div className="flex items-center gap-3 pt-5 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                  <span
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white/80"
+                    style={{
+                      background: "rgba(255,255,255,0.09)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      fontFamily: "var(--font-heading)",
+                    }}
+                  >
+                    {r.name.charAt(0)}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white/90" style={{ fontFamily: "var(--font-heading)" }}>
+                      {r.name}
+                    </p>
+                    <p className="text-[11px] text-white/35">{r.city}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Marquee testimonials (auto scroll - second row, reverse direction) */}
+        <div className="relative overflow-hidden group" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
+          <div className="flex gap-6 animate-marquee-reverse w-max group-hover:[animation-play-state:paused]" style={{ animationDuration: "75s" }}>
+            {[...REVIEWS_2, ...REVIEWS_2].map((r, i) => (
               <article
                 key={i}
                 className="w-[320px] md:w-[400px] shrink-0 p-7 md:p-8 rounded-3xl"
@@ -3219,10 +3461,10 @@ export default function Home() {
               Le journal
             </p>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white/90"
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+              style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
             >
-              Derniers<br />articles
+              Derniers <span className="text-white/40">articles</span>
             </h2>
           </div>
           <a
@@ -3404,21 +3646,10 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          SECTION 13 — POCHONS SHOWCASE (disabled)
-      ══════════════════════════════════════════════ */}
-      {false && (
-        <section id="section-showcase" className="relative z-10" style={{ height: "250vh" }}>
-          <div className="sticky top-0 h-screen flex items-end justify-center overflow-hidden">
-            {/* Pochons rendered by ScrollPochon (fixed) */}
-          </div>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════════ */}
       <footer
-        className="relative z-10 px-6 md:px-14 lg:px-24 pt-16 md:pt-20 pb-10"
+        className="relative z-10 px-6 md:px-14 lg:px-24 pt-16 md:pt-20 pb-40 md:pb-56"
         style={{ background: "#ffffff", color: "#0a2520" }}
       >
         <div className="max-w-7xl mx-auto">
