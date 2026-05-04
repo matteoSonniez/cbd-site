@@ -53,36 +53,52 @@ const LINKS = [
 
 const PANEL_TRANSITION_MS = 700;
 
-function MenuButton({ open, onClick, className = "", ...props }) {
+function MenuButton({ open, onClick, className = "", atTop = false, floating = false, ...props }) {
+  // When the menu is open OR the button is the floating one (over dark overlay),
+  // we always render the dark-glass variant so it stays visible on the dark backdrop.
+  const dark = atTop || open || floating;
+
+  const barColor = dark ? "rgba(255,255,255,0.95)" : "rgba(40,30,72,0.85)";
+
   return (
     <button
       onClick={onClick}
       aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-      className={`flex items-center justify-center w-10 h-10 rounded-full border border-gray-300/60 bg-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.12)] cursor-pointer ${className}`}
+      className={`group flex items-center justify-center w-[26px] h-[26px] rounded-[5px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.06] active:scale-[0.97] cursor-pointer ${className}`}
+      style={{
+        background: dark
+          ? "rgba(255,255,255,0.10)"
+          : "rgba(255,255,255,0.55)",
+        border: `1px solid ${
+          dark ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.75)"
+        }`,
+        backdropFilter: "blur(18px) saturate(180%)",
+        WebkitBackdropFilter: "blur(18px) saturate(180%)",
+        boxShadow: dark
+          ? "inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06), 0 4px 14px rgba(0,0,0,0.20)"
+          : "inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -1px 0 rgba(255,255,255,0.45), 0 6px 18px rgba(40,30,72,0.08)",
+      }}
       {...props}
     >
-      <div className="flex flex-col items-center justify-center gap-[3px]">
+      <div className="flex flex-col items-center justify-center gap-[3.5px]">
         <span
-          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
+          className={`block h-[1.5px] w-[12px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             open ? "translate-y-[5px] rotate-45" : ""
           }`}
+          style={{ background: barColor }}
         />
         <span
-          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
-            open ? "opacity-0" : ""
+          className={`block h-[1.5px] w-[8px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            open ? "-translate-y-[5px] -rotate-45 w-[12px]" : ""
           }`}
-        />
-        <span
-          className={`block h-[1.5px] w-[15px] rounded-full bg-[#5B4A8A] transition-all duration-300 ${
-            open ? "-translate-y-[5px] -rotate-45" : ""
-          }`}
+          style={{ background: barColor }}
         />
       </div>
     </button>
   );
 }
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ atTop = false }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [showFloatingButton, setShowFloatingButton] = useState(false);
@@ -109,6 +125,7 @@ export default function BurgerMenu() {
       {/* Bouton burger */}
       <MenuButton
         open={open}
+        atTop={atTop}
         onClick={() => setOpen((isOpen) => !isOpen)}
         className="relative z-50"
         aria-hidden={showFloatingButton}
@@ -121,8 +138,9 @@ export default function BurgerMenu() {
             {showFloatingButton && (
               <MenuButton
                 open={open}
+                floating
                 onClick={() => setOpen((isOpen) => !isOpen)}
-                className="fixed right-10 top-[10px] z-100"
+                className="fixed right-8 top-[18px] z-100"
               />
             )}
 

@@ -294,7 +294,7 @@ const ENGAGEMENTS = [
     stat: "100%",
     statLabel: "Cultures certifiées",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <svg viewBox="-1 -1 26 27" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2C7 7 4 11 4 16a8 8 0 0016 0c0-5-3-9-8-14z" />
         <path d="M12 22V8M12 14c-2-1-3-2-4-4M12 11c2-1 3-2 4-4" />
       </svg>
@@ -506,6 +506,128 @@ const FAQS = [
   },
 ];
 
+const PRODUCT_FAMILIES = [
+  {
+    slug: "fleurs",
+    number: "01",
+    kicker: "Fleurs de chanvre légales",
+    name: "Fleurs de CBD",
+    tagline: "Le chanvre dans son écrin végétal",
+    body:
+      "Issues d'une culture européenne raisonnée, nos fleurs de CBD respectent strictement le cadre légal français avec un taux de THC inférieur à 0,3%. Cultivées en outdoor, indoor ou greenhouse, chaque variété révèle un profil terpénique unique — agrumes, pin, fruits rouges, hashish. Idéales pour apaiser le mental, détendre les muscles et favoriser un sommeil profond grâce à leurs vertus naturellement relaxantes.",
+    features: ["Outdoor", "Indoor", "Greenhouse", "THC < 0,3%", "Bio certifié"],
+    accent: "rgba(125, 175, 95, 0.55)",
+    href: "/products?cat=fleurs",
+    icon: (
+      <svg viewBox="-1 -1 26 27" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2C7 7 4 11 4 16a8 8 0 0016 0c0-5-3-9-8-14z" />
+        <path d="M12 22V8M12 14c-2-1-3-2-4-4M12 11c2-1 3-2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    slug: "huiles",
+    number: "02",
+    kicker: "Huiles full-spectrum & broad",
+    name: "Huiles de CBD",
+    tagline: "Le bien-être condensé en quelques gouttes",
+    body:
+      "Nos huiles full-spectrum et broad-spectrum interagissent avec le système endocannabinoïde pour favoriser un équilibre durable. Reconnues pour leurs effets sur le stress, l'anxiété, les douleurs chroniques et la qualité du sommeil, elles s'intègrent simplement à toute routine bien-être. Disponibles en plusieurs concentrations, de 5% à 30%, pour s'adapter à chaque profil et à chaque besoin.",
+    features: ["Full-spectrum", "Broad-spectrum", "5% à 30%", "100% naturelles", "Vegan"],
+    accent: "rgba(220, 175, 90, 0.5)",
+    href: "/products?cat=huiles",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2.5c3 4 6 8 6 12.5a6 6 0 01-12 0c0-4.5 3-8.5 6-12.5z" />
+        <path d="M9 16c.5 1.2 1.7 2 3 2" />
+      </svg>
+    ),
+  },
+  {
+    slug: "infusions",
+    number: "03",
+    kicker: "Tisanes au cannabidiol",
+    name: "Infusions au CBD",
+    tagline: "Le rituel chaud, à savourer lentement",
+    body:
+      "Nos tisanes au CBD allient les vertus du chanvre à celles des plantes traditionnelles : camomille, verveine, mélisse, gingembre. Une méthode de consommation douce et chaleureuse, idéale pour décompresser en fin de journée ou ouvrir un moment de calme. Les cannabinoïdes diffusent progressivement dans l'organisme pour un effet enveloppant, durable et profond.",
+    features: ["Plantes bio associées", "Sans caféine", "Saveurs douces", "Soir & matin"],
+    accent: "rgba(225, 130, 95, 0.5)",
+    href: "/products?cat=infusions",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 10h13v6a4 4 0 01-4 4H8a4 4 0 01-4-4v-6z" />
+        <path d="M17 11h2a2 2 0 010 4h-2" />
+        <path d="M8 7c0-1 1-1.5 1-2.5S8 3 8 2M11.5 7c0-1 1-1.5 1-2.5S11.5 3 11.5 2M15 7c0-1 1-1.5 1-2.5S15 3 15 2" />
+      </svg>
+    ),
+  },
+  {
+    slug: "gelules",
+    number: "04",
+    kicker: "Capsules de CBD pré-dosées",
+    name: "Gélules CBD",
+    tagline: "Précision, discrétion, simplicité",
+    body:
+      "Pré-dosées et sans goût, nos gélules sont la solution la plus pratique pour intégrer le CBD à votre quotidien. Certaines formulations enrichies en mélatonine et plantes apaisantes ciblent spécifiquement le sommeil, pour des nuits plus profondes et une récupération optimale. Une consommation maîtrisée, sans contrainte, où que vous soyez.",
+    features: ["Dosage exact", "Sans arrière-goût", "Formules sommeil", "Format nomade"],
+    accent: "rgba(95, 165, 200, 0.5)",
+    href: "/products?cat=gelules",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="9" width="18" height="6" rx="3" />
+        <path d="M12 9v6" />
+      </svg>
+    ),
+  },
+  {
+    slug: "bonbons",
+    number: "05",
+    kicker: "Gummies au CBD",
+    name: "Bonbons CBD",
+    tagline: "Le plaisir gourmand au service du calme",
+    body:
+      "Framboise, pêche, pomme, menthe : nos gummies au CBD transforment votre prise quotidienne en un moment gourmand. Discrets, transportables et délicieux, ils sont parfaits pour décompresser en journée ou apaiser un pic de stress. Réservés à un public adulte, ils garantissent une expérience douce, savoureuse et naturelle.",
+    features: ["4 saveurs fruitées", "Format nomade", "Vegan-friendly", "+18 ans"],
+    accent: "rgba(220, 110, 145, 0.5)",
+    href: "/products?cat=bonbons",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="5" />
+        <path d="M7 12l-4-3v6l4-3zM17 12l4-3v6l-4-3z" />
+        <path d="M10 11l1 1-1 1M14 11l-1 1 1 1" />
+      </svg>
+    ),
+  },
+  {
+    slug: "animaux",
+    number: "06",
+    kicker: "CBD chiens & chats sans THC",
+    name: "CBD Animaux",
+    tagline: "Le bien-être de vos compagnons",
+    body:
+      "Nos huiles CBD broad-spectrum dédiées aux chiens et chats sont rigoureusement formulées sans THC, molécule toxique pour eux. Elles peuvent soulager l'anxiété, les troubles articulaires et améliorer le quotidien des animaux âgés ou stressés. Toujours après consultation vétérinaire, pour offrir à vos compagnons une vie plus paisible et heureuse.",
+    features: ["Sans THC", "Chiens & chats", "Bio broad-spectrum", "Validé vétérinaires"],
+    accent: "rgba(155, 120, 200, 0.5)",
+    href: "/products?cat=animaux",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="16" rx="4.5" ry="3.5" />
+        <ellipse cx="6" cy="10" rx="1.7" ry="2.2" />
+        <ellipse cx="18" cy="10" rx="1.7" ry="2.2" />
+        <ellipse cx="9" cy="6" rx="1.6" ry="2" />
+        <ellipse cx="15" cy="6" rx="1.6" ry="2" />
+      </svg>
+    ),
+  },
+];
+
+const PRODUCT_OVERVIEW_STATS = [
+  { value: "06", label: "Gammes de CBD" },
+  { value: "120+", label: "Produits au cannabidiol" },
+  { value: "<0,3%", label: "THC légal" },
+];
+
 const BLOG_POSTS = [
   {
     cat: "Lifestyle",
@@ -559,6 +681,12 @@ function Engagements() {
           bestIdx = i;
         }
       });
+      // Last engagement: activate the instant the scroll enters its area,
+      // since the user often stops scrolling before its center hits 45% viewport.
+      const lastIdx = itemRefs.current.length - 1;
+      if (newP[lastIdx] > 0.01) {
+        bestIdx = lastIdx;
+      }
       setProgresses((prev) => {
         const changed = prev.some((v, i) => Math.abs(v - newP[i]) > 0.003);
         return changed ? newP : prev;
@@ -643,23 +771,93 @@ function Engagements() {
                 }}
               />
 
-              {/* Crossfade icons */}
-              {ENGAGEMENTS.map((eng, i) => (
+              {/* Radial burst — replays each time `active` changes, delayed so it syncs with the stamp entrance */}
+              <div
+                key={`burst-${active}`}
+                aria-hidden
+                className="absolute left-1/2 pointer-events-none"
+                style={{ top: "calc(25% + 88px)" }}
+              >
+                {/* Outer ring — expanding light pulse */}
                 <div
-                  key={i}
-                  className="absolute inset-x-0 top-[25%] flex items-center justify-center transition-all duration-[900ms]"
+                  className="absolute left-0 top-0"
                   style={{
-                    opacity: active === i ? 1 : 0,
-                    transform:
-                      active === i ? "scale(1) rotate(0)" : "scale(0.85) rotate(-6deg)",
-                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+                    width: 360,
+                    height: 360,
+                    borderRadius: "9999px",
+                    border: "1.5px solid rgba(4,45,36,0.55)",
+                    boxShadow:
+                      "0 0 60px 10px rgba(4,45,36,0.18), inset 0 0 30px rgba(4,45,36,0.12)",
+                    animation: "eng-burst-ring 1100ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both",
+                    transformOrigin: "center",
                   }}
-                >
-                  <span className="block w-32 h-32 md:w-44 md:h-44 text-[#042d24]/85">
-                    {eng.icon}
-                  </span>
-                </div>
-              ))}
+                />
+                {/* Soft glow */}
+                <div
+                  className="absolute left-0 top-0"
+                  style={{
+                    width: 320,
+                    height: 320,
+                    borderRadius: "9999px",
+                    background:
+                      "radial-gradient(circle, rgba(4,45,36,0.35) 0%, rgba(4,45,36,0.08) 45%, rgba(4,45,36,0) 70%)",
+                    animation: "eng-burst-glow 950ms cubic-bezier(0.22, 1, 0.36, 1) 380ms both",
+                  }}
+                />
+                {/* Radiating sparkle particles */}
+                {Array.from({ length: 10 }).map((_, k) => {
+                  const angle = (k / 10) * Math.PI * 2;
+                  const radius = 70;
+                  const px = Math.cos(angle) * radius;
+                  const py = Math.sin(angle) * radius;
+                  return (
+                    <span
+                      key={k}
+                      className="absolute left-0 top-0 block rounded-full"
+                      style={{
+                        width: 6,
+                        height: 6,
+                        background: "rgba(4,45,36,0.85)",
+                        boxShadow: "0 0 10px rgba(4,45,36,0.6)",
+                        ["--px"]: `${px}px`,
+                        ["--py"]: `${py}px`,
+                        animation: `eng-particle 900ms cubic-bezier(0.16, 1, 0.3, 1) ${380 + k * 18}ms both`,
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Stamp icons — quick exit first, then elastic 3D entrance after the previous logo is gone */}
+              {ENGAGEMENTS.map((eng, i) => {
+                const isActive = active === i;
+                return (
+                  <div
+                    key={i}
+                    className="absolute inset-x-0 top-[25%] flex items-center justify-center"
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      animation: isActive
+                        ? "eng-icon-stamp 1100ms cubic-bezier(0.34, 1.56, 0.64, 1) 380ms both"
+                        : "eng-icon-exit 320ms cubic-bezier(0.7, 0, 0.84, 0) both",
+                      transformOrigin: "center center",
+                      willChange: "transform, opacity, filter",
+                      pointerEvents: isActive ? "auto" : "none",
+                    }}
+                  >
+                    <span
+                      className="block w-32 h-32 md:w-44 md:h-44 text-[#042d24]/85"
+                      style={{
+                        filter: isActive
+                          ? "drop-shadow(0 8px 22px rgba(4,45,36,0.28))"
+                          : "none",
+                      }}
+                    >
+                      {eng.icon}
+                    </span>
+                  </div>
+                );
+              })}
 
               {/* Top — progress segments */}
               <div className="absolute top-7 left-7 right-7 flex gap-2">
@@ -937,6 +1135,265 @@ function Engagements() {
           })}
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ── Product Universe (SEO-rich product families showcase) ── */
+function ProductUniverse() {
+  return (
+    <section className="relative z-10 py-20 md:py-28 px-6 md:px-14 lg:px-24">
+      {/* Header */}
+      <ScrollReveal className="mb-12 md:mb-16 max-w-3xl">
+        <p
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] mb-4 md:mb-5 px-3 py-1 rounded-full"
+          style={{
+            color: "rgba(255,255,255,0.7)",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            fontFamily: "var(--font-heading)",
+          }}
+        >
+          <span className="block w-1.5 h-1.5 rounded-full bg-white/60" />
+          L&apos;univers CBD
+        </p>
+        <h2
+          className="text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight text-white/95"
+          style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+        >
+          Toute notre <span className="text-white/40">gamme.</span>
+        </h2>
+        <p className="mt-3 md:mt-4 text-sm md:text-base text-white/55 leading-relaxed max-w-xl">
+          Six familles de produits au cannabidiol, sélectionnées avec exigence et conçues pour s&apos;intégrer
+          naturellement à votre quotidien, du rituel matinal au rituel du soir.
+        </p>
+      </ScrollReveal>
+
+      {/* Overview chips */}
+      <ScrollReveal className="mb-14 md:mb-20" delay={120}>
+        <div className="flex flex-wrap gap-3">
+          {PRODUCT_OVERVIEW_STATS.map((s) => (
+            <div
+              key={s.label}
+              className="inline-flex items-baseline gap-2.5 px-4 py-2.5 rounded-full"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+              }}
+            >
+              <span
+                className="text-base md:text-lg text-white/95 tabular-nums"
+                style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+              >
+                {s.value}
+              </span>
+              <span
+                className="text-[10px] uppercase tracking-[0.22em] text-white/45"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {s.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+
+      {/* Product blocks — alternating magazine layout */}
+      <div className="space-y-8 md:space-y-10">
+        {PRODUCT_FAMILIES.map((p, i) => {
+          const reverse = i % 2 === 1;
+          return (
+            <ScrollReveal key={p.slug} delay={i * 80}>
+              <article
+                className="group relative overflow-hidden rounded-[28px] md:rounded-[36px] transition-all duration-700"
+                style={{
+                  background:
+                    "linear-gradient(155deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.02) 60%, rgba(4,45,36,0.18) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.18)";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                {/* Accent radial glow that follows the icon side */}
+                <div
+                  aria-hidden
+                  className="absolute pointer-events-none transition-opacity duration-700 opacity-60 group-hover:opacity-100"
+                  style={{
+                    width: "60%",
+                    height: "120%",
+                    top: "-10%",
+                    [reverse ? "right" : "left"]: "-15%",
+                    background: `radial-gradient(circle at center, ${p.accent} 0%, transparent 60%)`,
+                    filter: "blur(40px)",
+                  }}
+                />
+
+                <div
+                  className={`relative grid grid-cols-1 md:grid-cols-12 items-center gap-8 md:gap-12 p-7 md:p-12 lg:p-16 ${
+                    reverse ? "md:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  {/* Icon side */}
+                  <div className="md:col-span-5 lg:col-span-4 flex items-center justify-center">
+                    <div className="relative">
+                      {/* Outer ring */}
+                      <div
+                        className="absolute inset-0 rounded-full transition-transform duration-1000 group-hover:scale-110"
+                        style={{
+                          width: 220,
+                          height: 220,
+                          background: `radial-gradient(circle, ${p.accent} 0%, transparent 65%)`,
+                          filter: "blur(20px)",
+                          opacity: 0.7,
+                        }}
+                      />
+                      {/* Inner glass disc */}
+                      <div
+                        className="relative flex items-center justify-center rounded-full transition-transform duration-700 group-hover:scale-[1.04]"
+                        style={{
+                          width: 220,
+                          height: 220,
+                          background:
+                            "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, rgba(4,45,36,0.25) 100%)",
+                          border: "1px solid rgba(255,255,255,0.12)",
+                          boxShadow:
+                            "inset 0 1px 0 rgba(255,255,255,0.18), 0 30px 60px -25px rgba(0,0,0,0.6)",
+                        }}
+                      >
+                        <span
+                          className="block w-24 h-24 lg:w-28 lg:h-28 text-white/85"
+                          style={{
+                            filter: `drop-shadow(0 8px 20px ${p.accent})`,
+                          }}
+                        >
+                          {p.icon}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content side */}
+                  <div className="md:col-span-7 lg:col-span-8">
+                    <div className="flex items-center gap-4 mb-5">
+                      <span
+                        className="text-[11px] uppercase tracking-[0.32em] text-white/45"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        <span className="tabular-nums">{p.number}</span> · {p.kicker}
+                      </span>
+                      <span className="h-px flex-1 bg-gradient-to-r from-white/25 to-transparent" />
+                    </div>
+
+                    <h3
+                      className="text-3xl md:text-4xl lg:text-5xl tracking-tight text-white/95 leading-[0.98] mb-3"
+                      style={{ fontFamily: "Glorify, var(--font-heading)", fontWeight: 400 }}
+                    >
+                      {p.name}
+                    </h3>
+
+                    <p
+                      className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-white/45 mb-5"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                    >
+                      {p.tagline}
+                    </p>
+
+                    <p className="text-sm md:text-base text-white/65 leading-relaxed mb-6 max-w-2xl">
+                      {p.body}
+                    </p>
+
+                    {/* Feature chips */}
+                    <div className="flex flex-wrap gap-2 mb-7">
+                      {p.features.map((f) => (
+                        <span
+                          key={f}
+                          className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
+                          style={{
+                            color: "rgba(255,255,255,0.7)",
+                            background: "rgba(255,255,255,0.05)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            fontFamily: "var(--font-heading)",
+                          }}
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={p.href}
+                      className="group/cta inline-flex items-center gap-2.5 text-xs md:text-sm font-semibold uppercase tracking-widest text-white/85 transition-all duration-500"
+                      style={{ fontFamily: "var(--font-heading)" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#ffffff";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+                      }}
+                    >
+                      Découvrir la gamme
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-4 h-4 transition-transform duration-500 ease-out group-hover/cta:translate-x-2"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+
+      {/* SEO closing paragraph — top trait above label, bottom trait below paragraph */}
+      <ScrollReveal className="mt-20 md:mt-28 max-w-3xl mx-auto text-center" delay={120}>
+        <div className="inline-flex flex-col items-stretch mb-6 md:mb-8">
+          <div className="h-px shimmer-line-horizontal opacity-60 mb-6 md:mb-8" />
+          <p
+            className="text-[10px] uppercase tracking-[0.32em] text-white/40 whitespace-nowrap"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Pourquoi choisir La Fleur CBD ?
+          </p>
+        </div>
+        <p className="text-sm md:text-base text-white/55 leading-relaxed">
+          Spécialiste français du cannabidiol, LaFleurCBD propose une sélection exigeante de produits au
+          CBD issus de chanvre européen biologique : fleurs de CBD conformes à la législation française
+          (THC inférieur à 0,3%), huiles full-spectrum et broad-spectrum, tisanes au chanvre, gélules
+          pré-dosées, gummies au CBD et soins dédiés aux chiens et chats. Chaque lot bénéficie
+          d&apos;analyses laboratoire indépendantes garantissant pureté, traçabilité et conformité légale.
+          Livraison discrète sous 24h partout en France, paiement 100% sécurisé, conseils personnalisés
+          et un large catalogue de produits CBD adaptés à tous les usages : sommeil, anxiété, relaxation,
+          douleurs musculaires, récupération sportive et bien-être animal.
+        </p>
+        <div className="inline-flex flex-col items-stretch mt-6 md:mt-8">
+          <span
+            aria-hidden
+            className="text-[10px] uppercase tracking-[0.32em] whitespace-nowrap invisible h-0 leading-none overflow-hidden"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Pourquoi choisir La Fleur CBD ?
+          </span>
+          <div className="h-px shimmer-line-horizontal opacity-60" />
+        </div>
+      </ScrollReveal>
     </section>
   );
 }
@@ -3545,6 +4002,11 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════
+          SECTION 10.5 — PRODUCT UNIVERSE (SEO families)
+      ══════════════════════════════════════════════ */}
+      <ProductUniverse />
 
       {/* ══════════════════════════════════════════════
           SECTION 11 — NEWSLETTER

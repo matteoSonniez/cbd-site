@@ -279,3 +279,88 @@ body {
   mask-image: repeating-linear-gradient(to right, black 0 2px, transparent 2px 6px);
 }
 
+/* Engagement icon stamp — elastic 3D entrance */
+@keyframes eng-icon-stamp {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-55deg) rotateZ(-18deg) scale(0.35);
+    filter: blur(14px);
+  }
+  35% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  60% {
+    transform: perspective(900px) rotateX(8deg) rotateZ(3deg) scale(1.14);
+  }
+  78% {
+    transform: perspective(900px) rotateX(-3deg) rotateZ(-1.2deg) scale(0.96);
+  }
+  90% {
+    transform: perspective(900px) rotateX(1deg) rotateZ(0.4deg) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(900px) rotateX(0) rotateZ(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Outgoing icon — quick dissolve toward viewer */
+@keyframes eng-icon-exit {
+  0% {
+    opacity: 1;
+    transform: perspective(900px) rotateX(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(35deg) scale(1.35);
+    filter: blur(18px);
+  }
+}
+
+/* Radial light burst that radiates from the icon */
+@keyframes eng-burst-ring {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  20% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.6);
+  }
+}
+
+@keyframes eng-burst-glow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  30% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+
+/* Tiny radiating particles */
+@keyframes eng-particle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--px, 0px), var(--py, 0px)) scale(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(calc(var(--px, 0px) * 1.4), calc(var(--py, 0px) * 1.4)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(calc(var(--px, 0px) * 2.6), calc(var(--py, 0px) * 2.6)) scale(0.4);
+  }
+}
