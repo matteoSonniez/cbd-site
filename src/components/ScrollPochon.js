@@ -120,10 +120,10 @@ function PochonImage({ src, alt, side, scrollData, introProgress, domRef }) {
 
 /* ── Showcase pochon (bottom section, scroll-driven) ── */
 const SHOWCASE_ITEMS = [
-  { src: "/pochons/pochon_image_rose.png", alt: "Pochon CBD Rose 1" },
-  { src: "/pochons/pochon_image_rose.png", alt: "Pochon CBD Rose 2" },
-  { src: "/pochons/pochon_image_rose.png", alt: "Pochon CBD Rose 3" },
-  { src: "/pochons/pochon_image_rose.png", alt: "Pochon CBD Rose 4" },
+  { src: "/pochons/pochon-vert.png",   alt: "Pochon CBD Vert" },
+  { src: "/pochons/pochon-rose.png",   alt: "Pochon CBD Rose" },
+  { src: "/pochons/pochon-orange.png", alt: "Pochon CBD Orange" },
+  { src: "/pochons/pochon-bleu.png",   alt: "Pochon CBD Bleu" },
 ];
 const SHOWCASE_TILT = 15;
 
@@ -296,7 +296,7 @@ export default function ScrollPochon() {
   return (
     <div className="fixed inset-0 pointer-events-none z-15 overflow-hidden">
       <PochonImage
-        src="/pochons/pochon_image_vert.png"
+        src="/pochons/pochon-vert.png"
         alt="Pochon CBD Vert"
         side="left"
         scrollData={scrollData}
@@ -304,7 +304,7 @@ export default function ScrollPochon() {
         domRef={vertRef}
       />
       <PochonImage
-        src="/pochons/pochon_image_rose.png"
+        src="/pochons/pochon-rose.png"
         alt="Pochon CBD Rose"
         side="right"
         scrollData={scrollData}
